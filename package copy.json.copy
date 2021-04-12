@@ -1,0 +1,59 @@
+{
+  "name": "wagtail-supertable",
+  "version": "0.1.0",
+  "description": "An extended wagtail table block.",
+  "babel": {
+    "presets": [
+      "react",
+      "env"
+    ]
+  },
+  "scripts": {
+    "build": "webpack -p",
+    "start": "webpack -w -d --display-error-details"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-preset-stage-2": "^6.17.0",
+    "css-loader": "^0.28.0",
+    "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
+    "enzyme": "^2.9.1",
+    "eslint": "^2.9.0",
+    "eslint-config-wagtail": "0.1.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "jest": "^20.0.4",
+    "mini-css-extract-plugin": "^1.4.0",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^2.0.6",
+    "react-test-renderer": "^15.6.1",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.18.2",
+    "webpack": "^4.46.0",
+    "webpack-bundle-tracker": "^0.2.0",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-preset-env": "^1.7.0",
+    "classlist-polyfill": "^1.2.0",
+    "classnames": "^2.2.5",
+    "element-dataset": "^2.2.6",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}

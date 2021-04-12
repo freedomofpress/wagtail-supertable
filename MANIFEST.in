@@ -1,0 +1,2 @@
+recursive-include wagtailsupertable/static *
+recursive-include wagtailsupertable/templates *
