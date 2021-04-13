@@ -70,3 +70,15 @@ table[id$=sortable-input] .sortable-type-input {
 .inline_fields .field {
     flex: 1;
 }
+
+.handsontable .red {
+    background-color: #fec5c7;
+}
+
+.handsontable .green {
+    background-color: #cff2d0;
+}
+
+.handsontable .yellow {
+    background-color: #fffac3;
+}

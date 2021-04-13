@@ -7,7 +7,7 @@ var path = require('path');
 var TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
-var target = __dirname + '/static/js/';
+var target = __dirname + '/wagtailsupertable/static/js/';
 
 var STATIC_URL = process.env.STATIC_URL || '/static/';
 var sassData = '$static-url: "' + STATIC_URL + '";';
@@ -16,7 +16,7 @@ console.log('Using STATIC_URL', STATIC_URL);
 
 var common = {
 	entry: {
-		table_block: __dirname + '/client/table-block.js',
+		table_block: __dirname + '/wagtailsupertable/client/table-block.js',
 	},
 
 	output: {

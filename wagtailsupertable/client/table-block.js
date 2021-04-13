@@ -79,6 +79,59 @@ import { stateToHTML } from 'draft-js-export-html';
 
     // Register alias
     window.Handsontable.editors.registerEditor('richtext', RichTextEditor);
+
+    
+  }
+
+  function setCustomContextMenus(){
+    window.Handsontable.hooks.once('beforeContextMenuSetItems', function(items) {
+
+      // Add richtext edit option in right click menu
+      var richtextMenu = items.find((item) => item.name == "richtext");
+      if (richtextMenu) {
+        richtextMenu.name = "Open richtext editor";
+        richtextMenu.key = "richtext";
+        richtextMenu.callback = makeEditorRichText;
+      }
+
+      // Add background color to cells
+      var colorMenu = items.find((item) => item.name == "color");
+      if (colorMenu) {
+        colorMenu.name = "Add background color";
+        colorMenu.key = "color";
+        colorMenu.submenu = {
+          items: [{
+            key: 'color:red',
+            name: 'Red',
+            callback: setCellColor
+          }, {
+            key: 'color:green',
+            name: 'Green',
+            callback: setCellColor
+          }, {
+            key: 'color:yellow',
+            name: 'Yellow',
+            callback: setCellColor
+          }]
+        }
+      }
+    })
+  }
+
+  function makeEditorRichText(key, selection, clickEvent) {
+    this.setCellMeta(selection[0].start.row, selection[0].start.col, 'editor', 'richtext');
+    this.selectCell(selection[0].start.row, selection[0].start.col);
+    this.getActiveEditor().beginEditing();
+  }
+
+  function setCellColor(key, opt) {
+  	let color = key.substring(6);
+  	for (let i = opt[0].start.row; i <= opt[0].end.row; i++) {
+      for (let j = opt[0].start.col; j <= opt[0].end.col; j++) {
+        this.setCellMeta(i, j, 'className', color);
+        this.render();
+      }
+    }
   }
 
 
@@ -219,4 +272,5 @@ import { stateToHTML } from 'draft-js-export-html';
   }
 
   window.createTableRichTextEditor = createTableRichTextEditor;
+  window.setCustomContextMenus = setCustomContextMenus;
 })( window );
