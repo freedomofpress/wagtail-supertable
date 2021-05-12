@@ -16,15 +16,6 @@
     
   <div class="inline_fields">
     <div class="field boolean_field widget-checkbox_input">
-      <label for="{{ attrs.id }}-handsontable-header">Scorecard table</label>
-      <div class="field-content">
-          <div class="input">
-              <input type="checkbox" id="{{ attrs.id }}-handsontable-scorecard-table" name="handsontable-scorecard-table"/>
-          </div>
-          <p class="help">( Enable scorecard column functionality )</p>
-      </div>
-    </div>
-    <div class="field boolean_field widget-checkbox_input">
         <label for="{{ attrs.id }}-handsontable-sortable">Sortable table</label>
         <div class="field-content">
             <div class="input">
@@ -36,38 +27,6 @@
         </div>
     </div>
   </div>
-    
-  <table id="{{ attrs.id }}-sortable-input">
-    <tr>
-      <td>
-        <select class="sortable-type-input">
-          <option value="">None</option>
-          <option value="string">Alphabetical</option>
-          <option value="number">Numerical</option>
-          <option value="string-default">Alphabetical - Default</option>
-          <option value="number-default">Numerical - Default</option>
-        </select>
-      </td>
-      <td>
-        <select class="sortable-type-input">
-          <option value="">None</option>
-          <option value="string">Alphabetical</option>
-          <option value="number">Numerical</option>
-          <option value="string-default">Alphabetical - Default</option>
-          <option value="number-default">Numerical - Default</option>
-        </select>
-      </td>
-      <td>
-        <select class="sortable-type-input">
-          <option value="">None</option>
-          <option value="string">Alphabetical</option>
-          <option value="number">Numerical</option>
-          <option value="string-default">Alphabetical - Default</option>
-          <option value="number-default">Numerical - Default</option>
-        </select>
-      </td>
-    </tr>
-  </table>
   
   {{ original_field_html }}
     
