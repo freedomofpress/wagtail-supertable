@@ -48485,6 +48485,14 @@ function stateToHTML(content, options) {
     return html;
   }
 
+  function makeTableSortable(id) {
+    $('#' + id + '-handsontable-sortable').on('click', function() {
+      var tableValue = JSON.parse($('#' + id).val());
+      tableValue["columnSorting"] = $(this).is(':checked');
+      $('#' + id).val(JSON.stringify(tableValue));
+    })
+  }
+  window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
 })( window );
