@@ -115,7 +115,7 @@ import { stateToHTML } from 'draft-js-export-html';
           }]
         }
       }
-    })
+    });
   }
 
   function makeEditorRichText(key, selection, clickEvent) {

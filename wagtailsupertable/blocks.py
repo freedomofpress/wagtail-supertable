@@ -58,9 +58,6 @@ class RichTextTableInput(WidgetWithScript, TableInput):
             'value': value,
         })
 
-    def render_js_init(self, id_, name, value):
-        return "createTableRichTextEditor();setCustomContextMenus();"
-
     @staticmethod
     def json_dict_apply(value, callback):
         value = json.loads(value)

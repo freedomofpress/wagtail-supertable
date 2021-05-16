@@ -82,3 +82,7 @@ table[id$=sortable-input] .sortable-type-input {
 .handsontable .yellow {
     background-color: #fffac3;
 }
+
+.handsontable table td p {
+    margin: 0;
+}

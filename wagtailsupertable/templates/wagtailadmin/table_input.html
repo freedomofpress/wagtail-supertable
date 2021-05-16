@@ -9,9 +9,13 @@
    Contains code copied from:  https://github.com/torchbox/wagtail/blob/master/wagtail/
    contrib/table_block/templates/table_block/widgets/table.html.
 
+   The scripts to register the hooks and richtexteditor are added before the HTML
+   so that the required context menu and richtexteditor are already registered before
+   handsontable is initialized.
+
 
    ========================================================================== -->
-
+<script>setCustomContextMenus();createTableRichTextEditor();</script>
 <div id="{{ attrs.id }}-handsontable-input-container">
     
   <div class="inline_fields">

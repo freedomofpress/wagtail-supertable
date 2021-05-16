@@ -48329,7 +48329,7 @@ function stateToHTML(content, options) {
           }]
         }
       }
-    })
+    });
   }
 
   function makeEditorRichText(key, selection, clickEvent) {
