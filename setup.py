@@ -14,7 +14,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
 
-    description='An Autocomplete edit handler for Pages, Snippets, and more.',
+    description='An extended wagtail table block.',
     long_description=long_description,
 
     url='https://github.com/freedomofpress/wagtail-supertable',
