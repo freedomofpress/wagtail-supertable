@@ -48297,7 +48297,7 @@ function stateToHTML(content, options) {
   }
 
   function setCustomContextMenus(){
-    window.Handsontable.hooks.once('beforeContextMenuSetItems', function(items) {
+    window.Handsontable.hooks.add('beforeContextMenuSetItems', function(items) {
 
       // Add richtext edit option in right click menu
       var richtextMenu = items.find((item) => item.name == "richtext");
@@ -48498,26 +48498,25 @@ function stateToHTML(content, options) {
     });
 
     $('#' + id + '-handsontable-header').on('change', function() {
-      var tableValue = JSON.parse($('#' + id).val());
-      if (tableValue) {
-        tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
-        $('#' + id).val(JSON.stringify(tableValue));
-      }
+      persistSortable(id);
     });
     $('#' + id + '-handsontable-col-header').on('change', function() {
-      var tableValue = JSON.parse($('#' + id).val());
-      if (tableValue) {
-        tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
-        $('#' + id).val(JSON.stringify(tableValue));
-      }
+      persistSortable(id);
     });
     $('#' + id + '-handsontable-col-caption').on('change', function() {
-      var tableValue = JSON.parse($('#' + id).val());
-      if (tableValue) {
-        tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
-        $('#' + id).val(JSON.stringify(tableValue));
-      }
+      persistSortable(id);
     });
+    window.Handsontable.hooks.add('afterDeselect', function() {
+      persistSortable(id);
+    });
+  }
+
+  function persistSortable(id) {
+    var tableValue = JSON.parse($('#' + id).val());
+    if (tableValue) {
+      tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
+      $('#' + id).val(JSON.stringify(tableValue));
+    }
   }
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
