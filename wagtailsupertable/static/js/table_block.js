@@ -48283,7 +48283,6 @@ function stateToHTML(content, options) {
 
         instance.setDataAtCell( cellProperties.row, cellProperties.col, html );
         instance.render();
-        $( window ).resize();
       } );
 
     };

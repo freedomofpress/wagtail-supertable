@@ -86,3 +86,11 @@ table[id$=sortable-input] .sortable-type-input {
 .handsontable table td p {
     margin: 0;
 }
+
+.handsontable:not(.ht_master) {
+    height: auto !important;
+}
+
+.handsontable .wtHolder {
+    height: auto !important;
+}

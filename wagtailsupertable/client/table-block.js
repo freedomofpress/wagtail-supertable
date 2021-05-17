@@ -69,7 +69,6 @@ import { stateToHTML } from 'draft-js-export-html';
 
         instance.setDataAtCell( cellProperties.row, cellProperties.col, html );
         instance.render();
-        $( window ).resize();
       } );
 
     };
