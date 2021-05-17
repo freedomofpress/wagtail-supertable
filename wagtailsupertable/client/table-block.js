@@ -271,11 +271,39 @@ import { stateToHTML } from 'draft-js-export-html';
   }
 
   function makeTableSortable(id) {
+    var tableInitialValue = JSON.parse($('#' + id).val());
+    if (tableInitialValue && tableInitialValue["columnSorting"]) {
+      $('#' + id + '-handsontable-sortable').prop("checked", true)
+    }
     $('#' + id + '-handsontable-sortable').on('click', function() {
       var tableValue = JSON.parse($('#' + id).val());
-      tableValue["columnSorting"] = $(this).is(':checked');
-      $('#' + id).val(JSON.stringify(tableValue));
-    })
+      if (tableValue) {
+        tableValue["columnSorting"] = $(this).is(':checked');
+        $('#' + id).val(JSON.stringify(tableValue));
+      }
+    });
+
+    $('#' + id + '-handsontable-header').on('change', function() {
+      var tableValue = JSON.parse($('#' + id).val());
+      if (tableValue) {
+        tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
+        $('#' + id).val(JSON.stringify(tableValue));
+      }
+    });
+    $('#' + id + '-handsontable-col-header').on('change', function() {
+      var tableValue = JSON.parse($('#' + id).val());
+      if (tableValue) {
+        tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
+        $('#' + id).val(JSON.stringify(tableValue));
+      }
+    });
+    $('#' + id + '-handsontable-col-caption').on('change', function() {
+      var tableValue = JSON.parse($('#' + id).val());
+      if (tableValue) {
+        tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
+        $('#' + id).val(JSON.stringify(tableValue));
+      }
+    });
   }
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;

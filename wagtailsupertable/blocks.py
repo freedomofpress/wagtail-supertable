@@ -39,7 +39,7 @@ EXTENDED_TABLE_OPTIONS = {
     'editor': 'text',
     'stretchH': 'all',
     'height': 108,
-    'language': 'en',
+    'language': 'en-US',
     'renderer': 'html',
     'autoColumnSize': False,
 }
