@@ -218,6 +218,11 @@ import { stateToHTML } from 'draft-js-export-html';
             type: 'DOCUMENT',
             icon: 'doc-full',
             description: 'Document'
+          },
+          {
+            type: 'IMAGE',
+            icon: 'image',
+            description: 'Image'
           }
         ],
         enableHorizontalRule: false,

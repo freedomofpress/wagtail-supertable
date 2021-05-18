@@ -48432,6 +48432,11 @@ function stateToHTML(content, options) {
             type: 'DOCUMENT',
             icon: 'doc-full',
             description: 'Document'
+          },
+          {
+            type: 'IMAGE',
+            icon: 'image',
+            description: 'Image'
           }
         ],
         enableHorizontalRule: false,
