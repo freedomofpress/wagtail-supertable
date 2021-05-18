@@ -48283,7 +48283,6 @@ function stateToHTML(content, options) {
 
         instance.setDataAtCell( cellProperties.row, cellProperties.col, html );
         instance.render();
-        $( window ).resize();
       } );
 
     };
@@ -48298,7 +48297,7 @@ function stateToHTML(content, options) {
   }
 
   function setCustomContextMenus(){
-    window.Handsontable.hooks.once('beforeContextMenuSetItems', function(items) {
+    window.Handsontable.hooks.add('beforeContextMenuSetItems', function(items) {
 
       // Add richtext edit option in right click menu
       var richtextMenu = items.find((item) => item.name == "richtext");
@@ -48329,7 +48328,7 @@ function stateToHTML(content, options) {
           }]
         }
       }
-    })
+    });
   }
 
   function makeEditorRichText(key, selection, clickEvent) {
@@ -48433,6 +48432,11 @@ function stateToHTML(content, options) {
             type: 'DOCUMENT',
             icon: 'doc-full',
             description: 'Document'
+          },
+          {
+            type: 'IMAGE',
+            icon: 'image',
+            description: 'Image'
           }
         ],
         enableHorizontalRule: false,
@@ -48485,6 +48489,41 @@ function stateToHTML(content, options) {
     return html;
   }
 
+  function makeTableSortable(id) {
+    var tableInitialValue = JSON.parse($('#' + id).val());
+    if (tableInitialValue && tableInitialValue["columnSorting"]) {
+      $('#' + id + '-handsontable-sortable').prop("checked", true)
+    }
+    $('#' + id + '-handsontable-sortable').on('click', function() {
+      var tableValue = JSON.parse($('#' + id).val());
+      if (tableValue) {
+        tableValue["columnSorting"] = $(this).is(':checked');
+        $('#' + id).val(JSON.stringify(tableValue));
+      }
+    });
+
+    $('#' + id + '-handsontable-header').on('change', function() {
+      persistSortable(id);
+    });
+    $('#' + id + '-handsontable-col-header').on('change', function() {
+      persistSortable(id);
+    });
+    $('#' + id + '-handsontable-col-caption').on('change', function() {
+      persistSortable(id);
+    });
+    window.Handsontable.hooks.add('afterDeselect', function() {
+      persistSortable(id);
+    });
+  }
+
+  function persistSortable(id) {
+    var tableValue = JSON.parse($('#' + id).val());
+    if (tableValue) {
+      tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
+      $('#' + id).val(JSON.stringify(tableValue));
+    }
+  }
+  window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
 })( window );

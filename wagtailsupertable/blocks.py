@@ -39,7 +39,7 @@ EXTENDED_TABLE_OPTIONS = {
     'editor': 'text',
     'stretchH': 'all',
     'height': 108,
-    'language': 'en',
+    'language': 'en-US',
     'renderer': 'html',
     'autoColumnSize': False,
 }
@@ -57,9 +57,6 @@ class RichTextTableInput(WidgetWithScript, TableInput):
             'attrs': attrs,
             'value': value,
         })
-
-    def render_js_init(self, id_, name, value):
-        return "createTableRichTextEditor();setCustomContextMenus();"
 
     @staticmethod
     def json_dict_apply(value, callback):

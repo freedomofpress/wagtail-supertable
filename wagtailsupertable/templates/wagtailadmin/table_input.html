@@ -9,67 +9,32 @@
    Contains code copied from:  https://github.com/torchbox/wagtail/blob/master/wagtail/
    contrib/table_block/templates/table_block/widgets/table.html.
 
+   The scripts to register the hooks and richtexteditor are added before the HTML
+   so that the required context menu and richtexteditor are already registered before
+   handsontable is initialized.
+
 
    ========================================================================== -->
-
+<script>setCustomContextMenus();createTableRichTextEditor();</script>
 <div id="{{ attrs.id }}-handsontable-input-container">
     
-  <div class="inline_fields">
-    <div class="field boolean_field widget-checkbox_input">
-      <label for="{{ attrs.id }}-handsontable-header">Scorecard table</label>
+
+  <div class="field boolean_field widget-checkbox_input">
+      <label for="{{ attrs.id }}-handsontable-sortable">Sortable table</label>
       <div class="field-content">
           <div class="input">
-              <input type="checkbox" id="{{ attrs.id }}-handsontable-scorecard-table" name="handsontable-scorecard-table"/>
+              <input type="checkbox"
+                    id="{{ attrs.id }}-handsontable-sortable"
+                    name="handsontable-sortable">
           </div>
-          <p class="help">( Enable scorecard column functionality )</p>
+          <p class="help">Enable sortable table functionality.</p>
       </div>
-    </div>
-    <div class="field boolean_field widget-checkbox_input">
-        <label for="{{ attrs.id }}-handsontable-sortable">Sortable table</label>
-        <div class="field-content">
-            <div class="input">
-                <input type="checkbox"
-                      id="{{ attrs.id }}-handsontable-sortable"
-                      name="handsontable-sortable">
-            </div>
-            <p class="help">( Enable sortable table functionality )</p>
-        </div>
-    </div>
   </div>
-    
-  <table id="{{ attrs.id }}-sortable-input">
-    <tr>
-      <td>
-        <select class="sortable-type-input">
-          <option value="">None</option>
-          <option value="string">Alphabetical</option>
-          <option value="number">Numerical</option>
-          <option value="string-default">Alphabetical - Default</option>
-          <option value="number-default">Numerical - Default</option>
-        </select>
-      </td>
-      <td>
-        <select class="sortable-type-input">
-          <option value="">None</option>
-          <option value="string">Alphabetical</option>
-          <option value="number">Numerical</option>
-          <option value="string-default">Alphabetical - Default</option>
-          <option value="number-default">Numerical - Default</option>
-        </select>
-      </td>
-      <td>
-        <select class="sortable-type-input">
-          <option value="">None</option>
-          <option value="string">Alphabetical</option>
-          <option value="number">Numerical</option>
-          <option value="string-default">Alphabetical - Default</option>
-          <option value="number-default">Numerical - Default</option>
-        </select>
-      </td>
-    </tr>
-  </table>
   
   {{ original_field_html }}
     
 </div>
+<script>
+  makeTableSortable("{{ attrs.id }}");
+</script>
     
