@@ -1,0 +1,55 @@
+table.supertable,table.supertable td,table.supertable th {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+table.supertable {
+  margin: 1rem 0;
+}
+
+table.supertable td,
+table.supertable th {
+  padding: 0.25rem 0.75rem;
+}
+
+td.hidden,
+th.hidden {
+  display: none;
+}
+
+td.red,
+th.red {
+  background-color: #fec5c7;
+}
+
+td.green,
+th.green {
+  background-color: #cff2d0;
+}
+
+td.yellow,
+th.yellow {
+  background-color: #fffac3;
+}
+
+td.htLeft,
+th.htLeft {
+  text-align: left;
+}
+
+td.htCenter,
+td.htMiddle,
+th.htCenter,
+th.htMiddle {
+  text-align: center;
+}
+
+td.htRight,
+th.htRight {
+  text-align: right;
+}
+
+td.htJustify,
+th.htJustify {
+  text-align: justify;
+}

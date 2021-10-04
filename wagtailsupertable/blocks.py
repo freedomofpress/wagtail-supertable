@@ -12,62 +12,64 @@ from wagtail.utils.widgets import WidgetWithScript
 from wagtail.core.rich_text import expand_db_html
 
 EXTENDED_TABLE_OPTIONS = {
-    'minSpareRows': 0,
-    'startRows': 3,
-    'startCols': 3,
-    'colHeaders': False,
-    'rowHeaders': False,
-    'contextMenu': [
-        'row_above',
-        'row_below',
-        '---------',
-        'col_left',
-        'col_right',
-        '---------',
-        'remove_row',
-        'remove_col',
-        '---------',
-        'undo',
-        'redo',
-        '---------',
-        'alignment',
-        'mergeCells',
-        'richtext',
-        'color',
+    "minSpareRows": 0,
+    "startRows": 3,
+    "startCols": 3,
+    "colHeaders": False,
+    "rowHeaders": False,
+    "contextMenu": [
+        "row_above",
+        "row_below",
+        "---------",
+        "col_left",
+        "col_right",
+        "---------",
+        "remove_row",
+        "remove_col",
+        "---------",
+        "undo",
+        "redo",
+        "---------",
+        "alignment",
+        "mergeCells",
+        "richtext",
+        "color",
     ],
-    'mergeCells': True,
-    'editor': 'text',
-    'stretchH': 'all',
-    'height': 108,
-    'language': 'en-US',
-    'renderer': 'html',
-    'autoColumnSize': False,
+    "mergeCells": True,
+    "editor": "text",
+    "stretchH": "all",
+    "height": 108,
+    "language": "en-US",
+    "renderer": "html",
+    "autoColumnSize": False,
 }
+
 
 class RichTextTableInput(WidgetWithScript, TableInput):
     def render(self, name, value, attrs=None):
-        value = self.json_dict_apply(
-            value,
-            expand_db_html
-        )
+        value = self.json_dict_apply(value, expand_db_html)
 
         html = super(RichTextTableInput, self).render(name, value, attrs)
-        return render_to_string('wagtailadmin/table_input.html', {
-            'original_field_html': html,
-            'attrs': attrs,
-            'value': value,
-        })
+        return render_to_string(
+            "wagtailadmin/table_input.html",
+            {
+                "original_field_html": html,
+                "attrs": attrs,
+                "value": value,
+            },
+        )
 
     @staticmethod
     def json_dict_apply(value, callback):
         value = json.loads(value)
 
-        for row in (value or {}).get('data') or []:
+        for row in (value or {}).get("data") or []:
             for i, cell in enumerate(row or []):
                 if cell:
                     row[i] = callback(cell)
 
         return json.dumps(value)
+
 
 class ExtendedTableBlock(TableBlock):
     @cached_property
@@ -87,15 +89,18 @@ class ExtendedTableBlock(TableBlock):
         collected_table_options = EXTENDED_TABLE_OPTIONS.copy()
 
         if table_options is not None:
-            if table_options.get('contextMenu', None) is True:
+            if table_options.get("contextMenu", None) is True:
                 # explicity check for True, as value could also be array
                 # delete to ensure the above default is kept for contextMenu
-                del table_options['contextMenu']
+                del table_options["contextMenu"]
             collected_table_options.update(table_options)
 
-        if 'language' not in collected_table_options:
+        if "language" not in collected_table_options:
             # attempt to gather the current set language of not provided
             language = translation.get_language()
-            collected_table_options['language'] = language
+            collected_table_options["language"] = language
 
         return collected_table_options
+
+    class Meta:
+        template = "table.html"

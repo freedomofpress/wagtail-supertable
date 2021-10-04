@@ -83,6 +83,9 @@ import { stateToHTML } from 'draft-js-export-html';
   }
 
   function setCustomContextMenus(){
+    window.Handsontable.hooks.add('afterMergeCells', function(cellRange, mergeParent, auto) {
+      saveMergeCellInformation(this, cellRange, mergeParent);
+    })
     window.Handsontable.hooks.add('beforeContextMenuSetItems', function(items) {
 
       // Add richtext edit option in right click menu
@@ -117,6 +120,21 @@ import { stateToHTML } from 'draft-js-export-html';
     });
   }
 
+  function saveMergeCellInformation(hot, cellRange, mergeParent) {
+    const oldClassName = hot.getCellMeta(mergeParent.row, mergeParent.col).className;
+    let mergeClassName = `rowspan-${mergeParent.rowspan} colspan-${mergeParent.colspan}`;
+    if (oldClassName) {
+      mergeClassName = oldClassName + " " + mergeClassName;
+    }
+    hot.setCellMeta(mergeParent.row, mergeParent.col, 'className', mergeClassName)
+    for(var i = 1; i < mergeParent.rowspan; i++) {
+      hot.setCellMeta((mergeParent.row + i), mergeParent.col, 'className', 'hidden')
+    }
+    for(var i = 1; i < mergeParent.colspan; i++) {
+      hot.setCellMeta(mergeParent.row, mergeParent.col + i, 'className', 'hidden')
+    }
+  }
+
   function makeEditorRichText(key, selection, clickEvent) {
     this.setCellMeta(selection[0].start.row, selection[0].start.col, 'editor', 'richtext');
     this.selectCell(selection[0].start.row, selection[0].start.col);
@@ -131,6 +149,7 @@ import { stateToHTML } from 'draft-js-export-html';
         this.render();
       }
     }
+    this.setCellMeta(1, 0, "hello", 23);
   }
 
 
@@ -309,6 +328,7 @@ import { stateToHTML } from 'draft-js-export-html';
       $('#' + id).val(JSON.stringify(tableValue));
     }
   }
+  
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
