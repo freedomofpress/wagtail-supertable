@@ -14,7 +14,7 @@
             {% with forloop.counter0 as col_index %}
                 <th scope="col"
                     {% cell_classname 0 col_index %}
-                    {% cell_colspan 0 col_index table_header %}
+                    {% cell_colspan 0 col_index %}
                 >
                     {% if column.strip %}
                         {% if html_renderer %}
