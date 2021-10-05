@@ -29564,7 +29564,7 @@ function stateToHTML(content, options) {
   }
 
   function saveMergeCellInformation(hot, cellRange, mergeParent) {
-    const oldClassName = hot.getCellMeta(mergeParent.row, mergeParent.col).className;
+    let oldClassName = hot.getCellMeta(mergeParent.row, mergeParent.col).className;
     let mergeClassName = `rowspan-${mergeParent.rowspan} colspan-${mergeParent.colspan}`;
     if (oldClassName) {
       oldClassName = oldClassName.replace(/rowspan-\d+/g, "").replace(/colspan-\d+/g, "").trim()
@@ -29740,7 +29740,7 @@ function stateToHTML(content, options) {
 
   function renderMergedCells(id) {
     const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
-    if ($cell) {
+    if ($cell.length) {
       const classes = $cell.attr('class').split(' ');
       const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
       const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
