@@ -124,6 +124,7 @@ import { stateToHTML } from 'draft-js-export-html';
     const oldClassName = hot.getCellMeta(mergeParent.row, mergeParent.col).className;
     let mergeClassName = `rowspan-${mergeParent.rowspan} colspan-${mergeParent.colspan}`;
     if (oldClassName) {
+      oldClassName = oldClassName.replace(/rowspan-\d+/g, "").replace(/colspan-\d+/g, "").trim()
       mergeClassName = oldClassName + " " + mergeClassName;
     }
     hot.setCellMeta(mergeParent.row, mergeParent.col, 'className', mergeClassName)
@@ -294,6 +295,21 @@ import { stateToHTML } from 'draft-js-export-html';
     return html;
   }
 
+  function renderMergedCells(id) {
+    window.onload = function(){
+      const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
+      if ($cell) {
+        const classes = $cell.attr('class').split(' ');
+        const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
+        const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
+        const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
+        const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
+        $cell.attr('rowspan', rowspan);
+        $cell.attr('colspan', colspan);
+      }
+    }
+  }
+
   function makeTableSortable(id) {
     var tableInitialValue = JSON.parse($('#' + id).val());
     if (tableInitialValue && tableInitialValue["columnSorting"]) {
@@ -332,4 +348,5 @@ import { stateToHTML } from 'draft-js-export-html';
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
+  window.renderMergedCells = renderMergedCells;
 })( window );

@@ -49,11 +49,6 @@ EXTENDED_TABLE_OPTIONS = {
 class RichTextTableInput(WidgetWithScript, TableInput):
     def render(self, name, value, attrs=None):
         value = self.json_dict_apply(value, expand_db_html)
-        json_data = json.loads(value)
-        if json_data:
-            merged_cells = self.get_merged_cells(json_data['cell'])
-            if merged_cells:
-                self.table_options['mergeCells'] = merged_cells
 
         html = super(RichTextTableInput, self).render(name, value, attrs)
         return render_to_string(
@@ -64,30 +59,6 @@ class RichTextTableInput(WidgetWithScript, TableInput):
                 "value": value,
             },
         )
-
-    def get_merged_cells(self, cells):
-        merged_cells = []
-        for meta in cells:
-            classname = meta.get('className', '')
-            rowspan = 1
-            colspan = 1
-            r = re.compile("rowspan-.*")
-            c = re.compile("colspan-.*")
-            classes = classname.split()
-            rowspan_list = list(filter(r.match, classes))
-            if rowspan_list:
-                rowspan = rowspan_list[0].replace("rowspan-", "")
-            colspan_list = list(filter(c.match, classes))
-            if colspan_list:
-                colspan = colspan_list[0].replace("colspan-", "")
-            if rowspan != 1 or colspan != 1:
-                merged_cells.append({
-                    "row": meta.get('row'),
-                    "col": meta.get('col'),
-                    "rowspan": int(rowspan),
-                    "colspan": int(colspan)
-                })
-        return merged_cells
 
     @staticmethod
     def json_dict_apply(value, callback):
