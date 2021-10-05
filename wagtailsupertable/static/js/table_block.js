@@ -29739,18 +29739,37 @@ function stateToHTML(content, options) {
   }
 
   function renderMergedCells(id) {
-    window.onload = function(){
-      const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
-      if ($cell) {
-        const classes = $cell.attr('class').split(' ');
-        const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
-        const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
-        const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
-        const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
-        $cell.attr('rowspan', rowspan);
-        $cell.attr('colspan', colspan);
-      }
+    const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
+    if ($cell) {
+      const classes = $cell.attr('class').split(' ');
+      const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
+      const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
+      const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
+      const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
+      $cell.attr('rowspan', rowspan);
+      $cell.attr('colspan', colspan);
     }
+  }
+
+  function persistMergedCells(id) {
+    window.onload = function(){
+      renderMergedCells(id);
+    }
+    $('#' + id + '-handsontable-header').on('change', function() {
+      renderMergedCells(id);
+    });
+    $('#' + id + '-handsontable-col-header').on('change', function() {
+      renderMergedCells(id);
+    });
+    $('#' + id + '-handsontable-col-caption').on('change', function() {
+      renderMergedCells(id);
+    });
+    window.Handsontable.hooks.add('afterDeselect', function() {
+      renderMergedCells(id);
+    });
+    window.Handsontable.hooks.add('afterRender', function() {
+      renderMergedCells(id);
+    });
   }
 
   function makeTableSortable(id) {
@@ -29791,7 +29810,7 @@ function stateToHTML(content, options) {
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
-  window.renderMergedCells = renderMergedCells;
+  window.persistMergedCells = persistMergedCells;
 })( window );
 })();
 
