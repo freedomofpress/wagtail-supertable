@@ -83,6 +83,9 @@ import { stateToHTML } from 'draft-js-export-html';
   }
 
   function setCustomContextMenus(){
+    window.Handsontable.hooks.add('afterMergeCells', function(cellRange, mergeParent, auto) {
+      saveMergeCellInformation(this, cellRange, mergeParent);
+    })
     window.Handsontable.hooks.add('beforeContextMenuSetItems', function(items) {
 
       // Add richtext edit option in right click menu
@@ -115,6 +118,23 @@ import { stateToHTML } from 'draft-js-export-html';
         }
       }
     });
+  }
+
+  function saveMergeCellInformation(hot, cellRange, mergeParent) {
+    let oldClassName = hot.getCellMeta(mergeParent.row, mergeParent.col).className;
+    let mergeClassName = `rowspan-${mergeParent.rowspan} colspan-${mergeParent.colspan}`;
+    if (oldClassName) {
+      oldClassName = oldClassName.replace(/rowspan-\d+/g, "").replace(/colspan-\d+/g, "").trim()
+      mergeClassName = oldClassName + " " + mergeClassName;
+    }
+    hot.setCellMeta(mergeParent.row, mergeParent.col, 'className', mergeClassName)
+    for(var i = 1; i < mergeParent.rowspan; i++) {
+      hot.setCellMeta((mergeParent.row + i), mergeParent.col, 'className', 'hidden')
+    }
+    for(var i = 1; i < mergeParent.colspan; i++) {
+      hot.setCellMeta(mergeParent.row, mergeParent.col + i, 'className', 'hidden')
+    }
+    hot.render()
   }
 
   function makeEditorRichText(key, selection, clickEvent) {
@@ -275,6 +295,43 @@ import { stateToHTML } from 'draft-js-export-html';
     return html;
   }
 
+  function renderMergedCells(id) {
+    const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
+    if ($cell.length) {
+      $cell.each(function() {
+        var $c = $(this);
+        const classes = $c.attr('class').split(' ');
+        const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
+        const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
+        const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
+        const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
+        $c.attr('rowspan', rowspan);
+        $c.attr('colspan', colspan);
+      });
+    }
+  }
+
+  function persistMergedCells(id) {
+    window.onload = function(){
+      renderMergedCells(id);
+    }
+    $('#' + id + '-handsontable-header').on('change', function() {
+      renderMergedCells(id);
+    });
+    $('#' + id + '-handsontable-col-header').on('change', function() {
+      renderMergedCells(id);
+    });
+    $('#' + id + '-handsontable-col-caption').on('change', function() {
+      renderMergedCells(id);
+    });
+    window.Handsontable.hooks.add('afterDeselect', function() {
+      renderMergedCells(id);
+    });
+    window.Handsontable.hooks.add('afterRender', function() {
+      renderMergedCells(id);
+    });
+  }
+
   function makeTableSortable(id) {
     var tableInitialValue = JSON.parse($('#' + id).val());
     if (tableInitialValue && tableInitialValue["columnSorting"]) {
@@ -309,7 +366,9 @@ import { stateToHTML } from 'draft-js-export-html';
       $('#' + id).val(JSON.stringify(tableValue));
     }
   }
+  
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
+  window.persistMergedCells = persistMergedCells;
 })( window );

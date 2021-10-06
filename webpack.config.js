@@ -36,7 +36,7 @@ var common = {
 				use: [
 					{
 						loader: 'babel-loader',
-						query: {
+						options: {
 							presets: ['react', 'env'],
 							plugins: ['add-module-exports']
 						},
