@@ -29577,6 +29577,7 @@ function stateToHTML(content, options) {
     for(var i = 1; i < mergeParent.colspan; i++) {
       hot.setCellMeta(mergeParent.row, mergeParent.col + i, 'className', 'hidden')
     }
+    hot.render()
   }
 
   function makeEditorRichText(key, selection, clickEvent) {
@@ -29741,13 +29742,16 @@ function stateToHTML(content, options) {
   function renderMergedCells(id) {
     const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
     if ($cell.length) {
-      const classes = $cell.attr('class').split(' ');
-      const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
-      const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
-      const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
-      const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
-      $cell.attr('rowspan', rowspan);
-      $cell.attr('colspan', colspan);
+      $cell.each(function() {
+        var $c = $(this);
+        const classes = $c.attr('class').split(' ');
+        const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
+        const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
+        const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
+        const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
+        $c.attr('rowspan', rowspan);
+        $c.attr('colspan', colspan);
+      });
     }
   }
 
