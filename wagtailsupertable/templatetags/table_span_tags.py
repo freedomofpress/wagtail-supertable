@@ -15,12 +15,11 @@ def cell_rowspan(context, row_index, col_index, table_header=None):
         index = (row_index, col_index)
         cell_class = classnames.get(index)
         if cell_class and "rowspan-" in cell_class:
-            r = re.compile("rowspan-.*")
-            classes = cell_class.split()
-            rowspan = list(filter(r.match, classes))
-            if rowspan:
-                rowspan = rowspan[0].replace("rowspan-", "")
-                if rowspan != 1:
+            r = re.compile(r"\browspan-(?P<rowspan>\d+)\b")
+            match = r.search(cell_class)
+            if match:
+                rowspan = match.group('rowspan')
+                if rowspan != "1":
                     return mark_safe("rowspan={}".format(rowspan))
     return ""
 
@@ -34,11 +33,14 @@ def cell_colspan(context, row_index, col_index, table_header=None):
         index = (row_index, col_index)
         cell_class = classnames.get(index)
         if cell_class and "colspan-" in cell_class:
-            r = re.compile("colspan-.*")
-            classes = cell_class.split()
-            colspan = list(filter(r.match, classes))
-            if colspan:
-                colspan = colspan[0].replace("colspan-", "")
-                if colspan != 1:
+            # Using word boundary matcher checks that a text of format
+            # colspan-{colspan} where {colspan} is the number that is
+            # captured group. So if it matches, we can get the colspan
+            # directly
+            r = re.compile(r"\bcolspan-(?P<colspan>\d+)\b")
+            match = r.search(cell_class)
+            if match:
+                colspan = match.group('colspan')
+                if colspan != "1":
                     return mark_safe("colspan={}".format(colspan))
     return ""

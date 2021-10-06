@@ -29594,7 +29594,6 @@ function stateToHTML(content, options) {
         this.render();
       }
     }
-    this.setCellMeta(1, 0, "hello", 23);
   }
 
 
