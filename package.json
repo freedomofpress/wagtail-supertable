@@ -29,7 +29,6 @@
     "postcss-loader": "^2.0.6",
     "react-test-renderer": "^17.0.2",
     "sass": "^1.32.8",
-    "sass-lint": "^1.10.2",
     "sass-loader": "^12.1.0",
     "style-loader": "^0.18.2",
     "webpack": "^5.56.1",
