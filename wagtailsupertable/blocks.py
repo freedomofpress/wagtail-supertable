@@ -8,9 +8,10 @@ from django.templatetags.static import static
 from django.template.loader import render_to_string
 
 from wagtail.admin.staticfiles import versioned_static
-from wagtail.contrib.table_block.blocks import TableBlock, TableInput
+from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
 from wagtail.utils.widgets import WidgetWithScript
 from wagtail.core.rich_text import expand_db_html
+from wagtail.core.telepath import register
 
 EXTENDED_TABLE_OPTIONS = {
     "minSpareRows": 0,
@@ -47,17 +48,12 @@ EXTENDED_TABLE_OPTIONS = {
 
 
 class RichTextTableInput(WidgetWithScript, TableInput):
-    def render(self, name, value, attrs=None):
-        value = self.json_dict_apply(value, expand_db_html)
-
-        html = super(RichTextTableInput, self).render(name, value, attrs)
-        return render_to_string(
-            "wagtailadmin/table_input.html",
-            {
-                "original_field_html": html,
-                "attrs": attrs,
-                "value": value,
-            },
+    @cached_property
+    def media(self):
+        tableinput_media = super(RichTextTableInput, self).media
+        return forms.Media(
+            css=tableinput_media._css,
+            js=tableinput_media._js + ['js/table_block.js']
         )
 
     @staticmethod
@@ -70,6 +66,13 @@ class RichTextTableInput(WidgetWithScript, TableInput):
                     row[i] = callback(cell)
 
         return json.dumps(value)
+
+
+class RichTextTableInputAdapter(TableInputAdapter):
+    js_constructor = 'wagtail.widgets.RichTextTableInput'
+
+
+register(RichTextTableInputAdapter(), RichTextTableInput)
 
 
 class ExtendedTableBlock(TableBlock):
