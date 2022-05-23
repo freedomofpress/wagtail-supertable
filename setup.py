@@ -20,7 +20,7 @@ setup(
     url='https://github.com/freedomofpress/wagtail-supertable',
 
     install_requires=[
-        'wagtail>=2.3',
+        'wagtail>=2.13',
     ],
 
     extras_require={

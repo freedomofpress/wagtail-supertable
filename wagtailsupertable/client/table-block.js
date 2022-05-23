@@ -371,4 +371,90 @@ import { stateToHTML } from 'draft-js-export-html';
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
   window.persistMergedCells = persistMergedCells;
+
+
+  // Create a new richtext table input widget
+  class RichTextTableInput {
+    constructor(options, strings) {
+      this.options = options;
+      this.strings = strings;
+    }
+  
+    render(placeholder, name, id, initialState) {
+      const container = document.createElement('div');
+      container.innerHTML = `
+        <div class="field boolean_field widget-checkbox_input">
+          <label for="${id}-handsontable-sortable">Sortable table</label>
+          <div class="field-content">
+              <div class="input">
+                  <input type="checkbox"
+                        id="${id}-handsontable-sortable"
+                        name="handsontable-sortable">
+              </div>
+              <p class="help">Enable sortable table functionality.</p>
+          </div>
+        </div>
+        <div class="field boolean_field widget-checkbox_input">
+          <label for="${id}-handsontable-header">${this.strings['Row header']}</label>
+          <div class="field-content">
+            <div class="input">
+              <input type="checkbox" id="${id}-handsontable-header" name="handsontable-header" />
+            </div>
+            <p class="help">${this.strings['Display the first row as a header.']}</p>
+          </div>
+        </div>
+        <br/>
+        <div class="field boolean_field widget-checkbox_input">
+          <label for="${id}-handsontable-col-header">${this.strings['Column header']}</label>
+          <div class="field-content">
+            <div class="input">
+              <input type="checkbox" id="${id}-handsontable-col-header" name="handsontable-col-header" />
+            </div>
+            <p class="help">${this.strings['Display the first column as a header.']}</p>
+          </div>
+        </div>
+        <br/>
+        <div class="field">
+            <label for="${id}-handsontable-col-caption">${this.strings['Table caption']}</label>
+            <div class="field-content">
+              <div class="input">
+              <input type="text" id="${id}-handsontable-col-caption" name="handsontable-col-caption" />
+            </div>
+            <p class="help">
+              ${this.strings['A heading that identifies the overall topic of the table, and is useful for screen reader users']}
+            </p>
+          </div>
+        </div>
+        <br/>
+        <div id="${id}-handsontable-container"></div>
+        <input type="hidden" name="${name}" id="${id}" placeholder="${this.strings['Table']}">
+      `;
+      placeholder.replaceWith(container);
+  
+      const input = container.querySelector(`input[name="${name}"]`);
+      const options = this.options;
+  
+      const widget = {
+        getValue() {
+          return JSON.parse(input.value);
+        },
+        getState() {
+          return JSON.parse(input.value);
+        },
+        setState(state) {
+          input.value = JSON.stringify(state);
+          setCustomContextMenus();
+          createTableRichTextEditor();
+          initTable(id, options);
+          makeTableSortable(id);
+          persistMergedCells(id);
+        },
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        focus() {},
+      };
+      widget.setState(initialState);
+      return widget;
+    }
+  }
+  window.telepath.register('wagtail.widgets.RichTextTableInput', RichTextTableInput);
 })( window );
