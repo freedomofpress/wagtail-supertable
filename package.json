@@ -13,8 +13,8 @@
     "start": "webpack watch --mode development --devtool eval-source-map"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.2",
     "@babel/core": "^7.21.0",
+    "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-polyfill": "^6.16.0",
@@ -36,7 +36,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "axios": "^0.21.2",
     "babel-preset-env": "^1.7.0",
     "classlist-polyfill": "^1.2.0",
     "classnames": "^2.2.5",
