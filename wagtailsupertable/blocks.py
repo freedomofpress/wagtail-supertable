@@ -10,8 +10,8 @@ from django.template.loader import render_to_string
 from wagtail.admin.staticfiles import versioned_static
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
 from wagtail.utils.widgets import WidgetWithScript
-from wagtail.core.rich_text import expand_db_html
-from wagtail.core.telepath import register
+from wagtail.rich_text import expand_db_html
+from wagtail.telepath import register
 
 EXTENDED_TABLE_OPTIONS = {
     "minSpareRows": 0,
