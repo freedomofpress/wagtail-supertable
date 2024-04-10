@@ -37,7 +37,7 @@ var common = {
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: ['react', 'env'],
+							presets: ['@babel/preset-react', '@babel/preset-env'],
 							plugins: ['add-module-exports']
 						},
 					}
