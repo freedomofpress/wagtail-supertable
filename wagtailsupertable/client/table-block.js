@@ -79,7 +79,7 @@ import { stateToHTML } from 'draft-js-export-html';
     // Register alias
     window.Handsontable.editors.registerEditor('richtext', RichTextEditor);
 
-    
+
   }
 
   function setCustomContextMenus(){
@@ -366,7 +366,7 @@ import { stateToHTML } from 'draft-js-export-html';
       $('#' + id).val(JSON.stringify(tableValue));
     }
   }
-  
+
   window.makeTableSortable = makeTableSortable;
   window.createTableRichTextEditor = createTableRichTextEditor;
   window.setCustomContextMenus = setCustomContextMenus;
@@ -379,61 +379,59 @@ import { stateToHTML } from 'draft-js-export-html';
       this.options = options;
       this.strings = strings;
     }
-  
+
     render(placeholder, name, id, initialState) {
       const container = document.createElement('div');
       container.innerHTML = `
-        <div class="field boolean_field widget-checkbox_input">
-          <label for="${id}-handsontable-sortable">Sortable table</label>
-          <div class="field-content">
-              <div class="input">
-                  <input type="checkbox"
-                        id="${id}-handsontable-sortable"
-                        name="handsontable-sortable">
-              </div>
-              <p class="help">Enable sortable table functionality.</p>
-          </div>
-        </div>
-        <div class="field boolean_field widget-checkbox_input">
-          <label for="${id}-handsontable-header">${this.strings['Row header']}</label>
-          <div class="field-content">
-            <div class="input">
-              <input type="checkbox" id="${id}-handsontable-header" name="handsontable-header" />
+        <div class="w-field__wrapper" data-field-wrapper>
+          <label class="w-field__label" for="${id}-handsontable-sortable">Sortable table</label>
+          <div class="w-field w-field--boolean_field w-field--checkbox_input" data-field>
+            <div class="w-field__help" id="${id}-handsontable-sortable-helptext" data-field-help>
+              <div class="help">Enable sortable table functionality.</div>
             </div>
-            <p class="help">${this.strings['Display the first row as a header.']}</p>
-          </div>
-        </div>
-        <br/>
-        <div class="field boolean_field widget-checkbox_input">
-          <label for="${id}-handsontable-col-header">${this.strings['Column header']}</label>
-          <div class="field-content">
-            <div class="input">
-              <input type="checkbox" id="${id}-handsontable-col-header" name="handsontable-col-header" />
+            <div class="w-field__input" data-field-input>
+              <input type="checkbox" id="${id}-handsontable-sortable" name="handsontable-sortable" aria-describedby="${id}-handsontable-sortable-helptext" />
             </div>
-            <p class="help">${this.strings['Display the first column as a header.']}</p>
           </div>
         </div>
-        <br/>
-        <div class="field">
-            <label for="${id}-handsontable-col-caption">${this.strings['Table caption']}</label>
-            <div class="field-content">
-              <div class="input">
-              <input type="text" id="${id}-handsontable-col-caption" name="handsontable-col-caption" />
+        <div class="w-field__wrapper" data-field-wrapper>
+          <label class="w-field__label" for="${id}-table-header-choice">${this.strings['Table headers']}</label>
+          <select id="${id}-table-header-choice" name="table-header-choice">
+            <option value="">Select a header option</option>
+            <option value="row">
+                ${this.strings['Display the first row as a header']}
+            </option>
+            <option value="column">
+                ${this.strings['Display the first column as a header']}
+            </option>
+            <option value="both">
+                ${this.strings['Display the first row AND first column as headers']}
+            </option>
+            <option value="neither">
+                ${this.strings['No headers']}
+            </option>
+          </select>
+          <p class="help">${this.strings['Which cells should be displayed as headers?']}</p>
+        </div>
+        <div class="w-field__wrapper" data-field-wrapper>
+          <label class="w-field__label" for="${id}-handsontable-col-caption">${this.strings['Table caption']}</label>
+          <div class="w-field w-field--char_field w-field--text_input" data-field>
+            <div class="w-field__help" id="${id}-handsontable-col-caption-helptext" data-field-help>
+              <div class="help">${this.strings['A heading that identifies the overall topic of the table, and is useful for screen reader users.']}</div>
             </div>
-            <p class="help">
-              ${this.strings['A heading that identifies the overall topic of the table, and is useful for screen reader users']}
-            </p>
+            <div class="w-field__input" data-field-input>
+              <input type="text" id="${id}-handsontable-col-caption" name="handsontable-col-caption" aria-describedby="${id}-handsontable-col-caption-helptext" />
+            </div>
           </div>
         </div>
-        <br/>
         <div id="${id}-handsontable-container"></div>
         <input type="hidden" name="${name}" id="${id}" placeholder="${this.strings['Table']}">
       `;
       placeholder.replaceWith(container);
-  
+
       const input = container.querySelector(`input[name="${name}"]`);
       const options = this.options;
-  
+
       const widget = {
         getValue() {
           return JSON.parse(input.value);
