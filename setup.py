@@ -20,7 +20,7 @@ setup(
     url='https://github.com/freedomofpress/wagtail-supertable',
 
     install_requires=[
-        'wagtail>=4.1',
+        'wagtail>=6.0',
     ],
 
     extras_require={
@@ -55,8 +55,7 @@ setup(
         'Framework :: Django :: 3.1',
         'Framework :: Django',
         'Framework :: Wagtail',
-        'Framework :: Wagtail :: 4.1',
-        'Framework :: Wagtail :: 5',
+        'Framework :: Wagtail :: 6',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
