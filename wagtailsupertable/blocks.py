@@ -9,7 +9,6 @@ from django.template.loader import render_to_string
 
 from wagtail.admin.staticfiles import versioned_static
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
-from wagtail.utils.widgets import WidgetWithScript
 from wagtail.rich_text import expand_db_html
 from wagtail.telepath import register
 
@@ -47,7 +46,7 @@ EXTENDED_TABLE_OPTIONS = {
 }
 
 
-class RichTextTableInput(WidgetWithScript, TableInput):
+class RichTextTableInput(forms.TextInput, TableInput):
     @cached_property
     def media(self):
         tableinput_media = super(RichTextTableInput, self).media
