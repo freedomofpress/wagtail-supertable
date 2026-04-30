@@ -1,15 +1,10 @@
 import json
-import re
 
 from django import forms
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.templatetags.static import static
-from django.template.loader import render_to_string
 
-from wagtail.admin.staticfiles import versioned_static
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
-from wagtail.rich_text import expand_db_html
 from wagtail.telepath import register
 
 EXTENDED_TABLE_OPTIONS = {
