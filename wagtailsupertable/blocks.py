@@ -5,7 +5,7 @@ from django.utils import translation
 from django.utils.functional import cached_property
 
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
-from wagtail.telepath import register
+from wagtail.admin.telepath import register
 
 EXTENDED_TABLE_OPTIONS = {
     "minSpareRows": 0,
