@@ -1,16 +1,11 @@
 import json
-import re
 
 from django import forms
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.templatetags.static import static
-from django.template.loader import render_to_string
 
-from wagtail.admin.staticfiles import versioned_static
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
 from wagtail.utils.widgets import WidgetWithScript
-from wagtail.rich_text import expand_db_html
 from wagtail.telepath import register
 
 EXTENDED_TABLE_OPTIONS = {
@@ -52,8 +47,7 @@ class RichTextTableInput(WidgetWithScript, TableInput):
     def media(self):
         tableinput_media = super(RichTextTableInput, self).media
         return forms.Media(
-            css=tableinput_media._css,
-            js=tableinput_media._js + ['js/table_block.js']
+            css=tableinput_media._css, js=tableinput_media._js + ["js/table_block.js"]
         )
 
     @staticmethod
@@ -69,7 +63,7 @@ class RichTextTableInput(WidgetWithScript, TableInput):
 
 
 class RichTextTableInputAdapter(TableInputAdapter):
-    js_constructor = 'wagtail.widgets.RichTextTableInput'
+    js_constructor = "wagtail.widgets.RichTextTableInput"
 
 
 register(RichTextTableInputAdapter(), RichTextTableInput)
