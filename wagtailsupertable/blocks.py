@@ -3,10 +3,8 @@ import json
 from django import forms
 from django.utils import translation
 from django.utils.functional import cached_property
-
+from wagtail.admin.telepath import register
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
-from wagtail.utils.widgets import WidgetWithScript
-from wagtail.telepath import register
 
 EXTENDED_TABLE_OPTIONS = {
     "minSpareRows": 0,
@@ -42,12 +40,18 @@ EXTENDED_TABLE_OPTIONS = {
 }
 
 
-class RichTextTableInput(WidgetWithScript, TableInput):
+class RichTextTableInput(TableInput):
     @cached_property
     def media(self):
-        tableinput_media = super(RichTextTableInput, self).media
+        tableinput_media = super().media
         return forms.Media(
-            css=tableinput_media._css, js=tableinput_media._js + ["js/table_block.js"]
+            # Extend Handsontable's CSS
+            css={
+                **tableinput_media._css,
+                "all": tableinput_media._css.get("all", [])
+                + ["css/table-block-modal.css"],
+            },
+            js=tableinput_media._js + ["js/table_block.js"],
         )
 
     @staticmethod
