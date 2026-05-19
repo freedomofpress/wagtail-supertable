@@ -33,7 +33,7 @@ import { stateToHTML } from 'draft-js-export-html';
       const modalDom = showModal();
       const editorHtml = _createRichTextEditor( cellValue );
 
-      modalDom.on( 'save-btn:clicked', function() {
+      modalDom.addEventListener( 'save-btn:clicked', function() {
         const editorValue = editorHtml.value;
         let html;
 
@@ -153,62 +153,40 @@ import { stateToHTML } from 'draft-js-export-html';
     }
   }
 
+  function showModal() {
+    // Remove any prior instance
+    document.querySelectorAll('.table-block-modal').forEach((el) => el.remove());
 
+    const dialog = document.createElement('dialog');
+    dialog.className = 'table-block-modal';
+    dialog.setAttribute('aria-labelledby', 'table-block-modal-title');
+    dialog.innerHTML = `
+      <button type="button" class="table-block-modal__close" aria-label="Close" data-close>×</button>
+      <header class="table-block-modal__header">
+        <h1 id="table-block-modal-title" class="icon icon-table">Edit Table Cell</h1>
+      </header>
+      <div class="table-block-modal__body">
+        <input id="table-block-editor" type="hidden" name="title" value="">
+      </div>
+      <footer class="table-block-modal__footer">
+        <button id="table-block-save-btn" type="button" class="button" data-save>Save</button>
+      </footer>
+    `;
+    document.body.appendChild(dialog);
 
-  function showModal( ) {
-    let modalDom;
-    let modalBodyDom;
-    let bodyDom = null;
-    let saveBtnDom;
+    dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
 
-    // Set header template.
-    const MODAL_BODY_TEMPLATE = [
-      '<header class="nice-padding hasform">',
-      '<div class="row">',
-      '<div class="left">',
-      '<div class="col">',
-      '<h1 class="icon icon-table">Edit Table Cell</h1>',
-      '</div>',
-      '</div>',
-      '</div>',
-      '</header>',
-      '<div class="row active nice-padding struct-block object">',
-      '<label class="hidden" for="table-block-editor">Table Cell Input</label>',
-      '<input class="hidden" id="table-block-editor" maxlength="255" name="title" type="text" value="" class="data-draftail-input">',
-      '</div><br>',
-      '<div class="row active nice-padding m-t-10">',
-      '<label class="hidden" for="table-block-save-btn">Save</label>',
-      '<button id="table-block-save-btn" type="button" data-dismiss="modal" class="button">Save Button</button>',
-      '</div>'
-    ].join( '' );
+    dialog.querySelector('[data-save]').addEventListener('click', (event) => {
+      dialog.dispatchEvent(
+        new CustomEvent('save-btn:clicked', { detail: { originalEvent: event } })
+      );
+      dialog.close();
+    });
 
-    // Set body template.
-    const MODAL_TEMPLATE = [
-      '<div class="table-block-modal fade"',
-      'tabindex="-1" role="dialog" aria-hidden="true">',
-      '<div class="modal-dialog">',
-      '<div class="modal-content">',
-      '<label class="hidden" for="close-table-block-modal-btn">Close Modal Button</label>',
-      '<button id="close-table-block-modal-btn" type="button" class="button close icon text-replace icon-cross"',
-      'data-dismiss="modal" aria-hidden="true">×</button>',
-      '<div class="modal-body"></div>',
-      '</div>',
-      '</div>'
-    ].join( '' );
+    dialog.addEventListener('close', () => dialog.remove());
 
-    modalDom = $( MODAL_TEMPLATE );
-    modalBodyDom = modalDom.find( '.modal-body' );
-    modalBodyDom.html( MODAL_BODY_TEMPLATE );
-    bodyDom = $( 'body' );
-    bodyDom.find( '.table-block-modal' ).remove();
-    bodyDom.append( modalDom );
-    modalDom.modal( 'show' );
-    saveBtnDom = modalDom.find( '#table-block-save-btn' );
-    saveBtnDom.on( 'click', function( event ) {
-      modalDom.trigger( 'save-btn:clicked', event );
-    } );
-
-    return modalDom;
+    dialog.showModal();
+    return dialog;
   }
 
   /*  createRichTextEditor

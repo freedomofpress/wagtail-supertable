@@ -1,0 +1,52 @@
+dialog.table-block-modal {
+	padding: 0;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+	max-width: 90vw;
+	width: 720px;
+	max-height: 90vh;
+	overflow: auto;
+	background: #fff;
+	color: inherit;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+dialog.table-block-modal::backdrop {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.table-block-modal__close {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	background: transparent;
+	border: none;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0.25rem 0.5rem;
+}
+
+.table-block-modal__header {
+	padding: 1.5rem 3rem 1rem 1.5rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.table-block-modal__header h1 {
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+.table-block-modal__body {
+	padding: 1.5rem 1.5rem 1.5rem 3.75rem;
+}
+
+.table-block-modal__footer {
+	padding: 1rem 1.5rem;
+	border-top: 1px solid #e5e5e5;
+	text-align: right;
+}
+
+#table-block-editor {
+	display: none;
+}

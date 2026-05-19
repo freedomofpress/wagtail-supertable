@@ -45,7 +45,12 @@ class RichTextTableInput(TableInput):
     def media(self):
         tableinput_media = super().media
         return forms.Media(
-            css=tableinput_media._css,
+            # Extend Handsontable's CSS
+            css={
+                **tableinput_media._css,
+                "all": tableinput_media._css.get("all", [])
+                + ["css/table-block-modal.css"],
+            },
             js=tableinput_media._js + ["js/table_block.js"],
         )
 
