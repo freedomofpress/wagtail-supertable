@@ -16888,7 +16888,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Seq: () => (/* binding */ Seq),
 /* harmony export */   Set: () => (/* binding */ Set),
 /* harmony export */   Stack: () => (/* binding */ Stack),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   fromJS: () => (/* binding */ fromJS),
 /* harmony export */   get: () => (/* binding */ get),
 /* harmony export */   getIn: () => (/* binding */ getIn$1),
@@ -22939,6 +22938,10 @@ var Iterable = Collection;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Immutable);
 
 
+/* harmony export */ __webpack_require__.d(__webpack_exports__, [
+/* harmony export */   "default", 0, /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ ]);
+
 
 /***/ },
 
@@ -24560,17 +24563,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 /******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
+/******/ 	const __webpack_module_cache__ = {};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		const cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		const module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
@@ -24591,11 +24594,26 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 /******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
+/******/ 		// define getter/value functions for harmony exports
 /******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 			if(Array.isArray(definition)) {
+/******/ 				var i = 0;
+/******/ 				while(i < definition.length) {
+/******/ 					var key = definition[i++];
+/******/ 					var binding = definition[i++];
+/******/ 					if(!__webpack_require__.o(exports, key)) {
+/******/ 						if(binding === 0) {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, value: definition[i++] });
+/******/ 						} else {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, get: binding });
+/******/ 						}
+/******/ 					} else if(binding === 0) { i++; }
+/******/ 				}
+/******/ 			} else {
+/******/ 				for(var key in definition) {
+/******/ 					if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 						Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					}
 /******/ 				}
 /******/ 			}
 /******/ 		};
@@ -24622,15 +24640,23 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			if(Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/
+/******/ 	/* webpack/runtime/set anonymous default export name */
+/******/ 	(() => {
+/******/ 		// set .name for anonymous default exports per ES spec
+/******/ 		__webpack_require__.dn = (x) => {
+/******/ 			(Object.getOwnPropertyDescriptor(x, "name") || {}).writable || Object.defineProperty(x, "name", { value: "default", configurable: true });
+/******/ 		};
+/******/ 	})();
+/******/
 /************************************************************************/
-var __webpack_exports__ = {};
+let __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
@@ -24830,11 +24856,11 @@ var INLINE_STYLE = {
   STRIKETHROUGH: 'STRIKETHROUGH',
   UNDERLINE: 'UNDERLINE'
 };
-/* harmony default export */ const Constants = ({
+/* harmony default export */ const Constants = ((/* unused pure expression or super */ null && ({
   BLOCK_TYPE: BLOCK_TYPE,
   ENTITY_TYPE: ENTITY_TYPE,
   INLINE_STYLE: INLINE_STYLE
-});
+})));
 // EXTERNAL MODULE: ./node_modules/immutable/dist/immutable.es.js
 var immutable_es = __webpack_require__(9568);
 ;// ./node_modules/draft-js-utils/esm/getEntityRanges.js
@@ -24947,7 +24973,7 @@ var Draft = __webpack_require__(5143);
   });
   return EditorState.forceSelection(finalEditorState, currentSelection);
 });
-(Object.getOwnPropertyDescriptor(callModifierForSelectedBlocks, "name") || {}).writable || Object.defineProperty(callModifierForSelectedBlocks, "name", { value: "default", configurable: true });
+__webpack_require__.dn(callModifierForSelectedBlocks);
 ;// ./node_modules/draft-js-utils/esm/main.js
 
 
