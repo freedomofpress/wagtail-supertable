@@ -23,9 +23,12 @@ updates:
       day: 'sunday'
     cooldown:
       default-days: 7
-    open-pull-requests-limit: 10
     allow:
       - dependency-type: 'all'
     commit-message:
       prefix: 'build'
       include: 'scope'
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
