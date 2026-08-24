@@ -4,7 +4,6 @@ var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var path = require('path');
 
 var TARGET = process.env.npm_lifecycle_event;
-process.env.BABEL_ENV = TARGET;
 
 var target = __dirname + '/wagtailsupertable/static/js/';
 
@@ -30,21 +29,6 @@ var common = {
 
 	module: {
 		rules: [
-			{
-				test: /\.js$/,
-				use: [
-					{
-						loader: 'babel-loader',
-						options: {
-							presets: ['@babel/preset-react', '@babel/preset-env'],
-							plugins: ['add-module-exports']
-						},
-					}
-				],
-				include: [
-					path.join(__dirname, '/client/'),
-				],
-			},
 			{
 				test: /\.s[ca]ss$/,
 				use: [
