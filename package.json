@@ -7,13 +7,8 @@
     "start": "webpack watch --mode development --devtool eval-source-map"
   },
   "devDependencies": {
-    "css-loader": "^7.1.4",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
-    "mini-css-extract-plugin": "^2.10.2",
-    "postcss-loader": "^8.2.1",
-    "sass": "^1.102.0",
-    "sass-loader": "^17.0.0",
     "webpack": "^5.109.2",
     "webpack-cli": "^7.2.2",
     "webpack-merge": "^6.0.1"
