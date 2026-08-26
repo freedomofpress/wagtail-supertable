@@ -1,4 +1,5 @@
 import re
+
 from django import template
 from django.utils.safestring import mark_safe
 
@@ -20,7 +21,7 @@ def cell_rowspan(context, row_index, col_index, table_header=None):
             if match:
                 rowspan = match.group("rowspan")
                 if rowspan != "1":
-                    return mark_safe("rowspan={}".format(rowspan))
+                    return mark_safe(f"rowspan={rowspan}")
     return ""
 
 
@@ -42,5 +43,5 @@ def cell_colspan(context, row_index, col_index, table_header=None):
             if match:
                 colspan = match.group("colspan")
                 if colspan != "1":
-                    return mark_safe("colspan={}".format(colspan))
+                    return mark_safe(f"colspan={colspan}")
     return ""
