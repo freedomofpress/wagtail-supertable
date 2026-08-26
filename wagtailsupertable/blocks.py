@@ -3,8 +3,10 @@ import json
 from django import forms
 from django.utils import translation
 from django.utils.functional import cached_property
+
 from wagtail.admin.telepath import register
 from wagtail.contrib.table_block.blocks import TableBlock, TableInput, TableInputAdapter
+
 
 EXTENDED_TABLE_OPTIONS = {
     "minSpareRows": 0,
