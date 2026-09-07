@@ -10,7 +10,7 @@
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "webpack": "^5.109.2",
-    "webpack-cli": "^7.2.2",
+    "webpack-cli": "^7.2.3",
     "webpack-merge": "^6.0.1"
   }
 }
