@@ -12,7 +12,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -136,7 +136,7 @@ module.exports = AtomicBlockUtils;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -166,7 +166,7 @@ module.exports = BlockMapBuilder;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -283,7 +283,7 @@ module.exports = BlockTree;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -399,7 +399,7 @@ module.exports = CharacterMetadata;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -527,7 +527,7 @@ module.exports = CompositeDraftDecorator;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -660,7 +660,7 @@ module.exports = ContentBlock;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This file is a fork of ContentBlock adding support for nesting references by
@@ -813,7 +813,7 @@ module.exports = ContentBlockNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -1054,7 +1054,7 @@ module.exports = ContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -1128,7 +1128,7 @@ module.exports = ContentStateInlineStyle;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -1293,7 +1293,7 @@ module.exports = DOMObserver;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -1377,7 +1377,7 @@ module.exports = DefaultDraftBlockRenderMap;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -1403,99 +1403,6 @@ module.exports = {
 
 /***/ },
 
-/***/ 5143
-(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- *
- */
-
-
-var AtomicBlockUtils = __webpack_require__(5889);
-
-var BlockMapBuilder = __webpack_require__(5748);
-
-var CharacterMetadata = __webpack_require__(3018);
-
-var CompositeDraftDecorator = __webpack_require__(9083);
-
-var ContentBlock = __webpack_require__(6840);
-
-var ContentState = __webpack_require__(7656);
-
-var DefaultDraftBlockRenderMap = __webpack_require__(3387);
-
-var DefaultDraftInlineStyle = __webpack_require__(7918);
-
-var DraftEditor = __webpack_require__(3299);
-
-var DraftEditorBlock = __webpack_require__(1124);
-
-var DraftEntity = __webpack_require__(1608);
-
-var DraftModifier = __webpack_require__(9938);
-
-var DraftEntityInstance = __webpack_require__(5407);
-
-var EditorState = __webpack_require__(2242);
-
-var KeyBindingUtil = __webpack_require__(9414);
-
-var RawDraftContentState = __webpack_require__(6429);
-
-var RichTextEditorUtil = __webpack_require__(7018);
-
-var SelectionState = __webpack_require__(1381);
-
-var convertFromDraftStateToRaw = __webpack_require__(7470);
-
-var convertFromRawToDraftState = __webpack_require__(428);
-
-var generateRandomKey = __webpack_require__(6991);
-
-var getDefaultKeyBinding = __webpack_require__(7811);
-
-var getVisibleSelectionRect = __webpack_require__(894);
-
-var convertFromHTML = __webpack_require__(4712);
-
-var DraftPublic = {
-  Editor: DraftEditor,
-  EditorBlock: DraftEditorBlock,
-  EditorState: EditorState,
-  CompositeDecorator: CompositeDraftDecorator,
-  Entity: DraftEntity,
-  EntityInstance: DraftEntityInstance,
-  BlockMapBuilder: BlockMapBuilder,
-  CharacterMetadata: CharacterMetadata,
-  ContentBlock: ContentBlock,
-  ContentState: ContentState,
-  RawDraftContentState: RawDraftContentState,
-  SelectionState: SelectionState,
-  AtomicBlockUtils: AtomicBlockUtils,
-  KeyBindingUtil: KeyBindingUtil,
-  Modifier: DraftModifier,
-  RichUtils: RichTextEditorUtil,
-  DefaultDraftBlockRenderMap: DefaultDraftBlockRenderMap,
-  DefaultDraftInlineStyle: DefaultDraftInlineStyle,
-  convertFromHTML: convertFromHTML,
-  convertFromRaw: convertFromRawToDraftState,
-  convertToRaw: convertFromDraftStateToRaw,
-  genKey: generateRandomKey,
-  getDefaultKeyBinding: getDefaultKeyBinding,
-  getVisibleSelectionRect: getVisibleSelectionRect
-};
-module.exports = DraftPublic;
-
-/***/ },
-
 /***/ 3299
 (module, __unused_webpack_exports, __webpack_require__) {
 
@@ -1507,7 +1414,7 @@ module.exports = DraftPublic;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @preventMunge
  * @emails oncall+draft_js
  */
@@ -2177,7 +2084,7 @@ module.exports = DraftEditor;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -2430,7 +2337,7 @@ module.exports = DraftEditorBlock;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This file is a fork of DraftEditorBlock.react.js and DraftEditorContents.react.js
@@ -2781,7 +2688,7 @@ module.exports = DraftEditorBlockNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -3015,7 +2922,7 @@ module.exports = DraftEditorCompositionHandler;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -3277,7 +3184,7 @@ module.exports = DraftEditorContents;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  */
 
 
@@ -3299,7 +3206,7 @@ module.exports = experimentalTreeDataSupport ? __webpack_require__(1803) : __web
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This file is a fork of DraftEditorContents.react.js for tree nodes
@@ -3477,7 +3384,7 @@ module.exports = DraftEditorContentsExperimental;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This is unstable and not part of the public API and should not be used by
@@ -3555,7 +3462,7 @@ module.exports = DraftEditorDecoratedLeaves;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -3713,7 +3620,7 @@ module.exports = DraftEditorDragHandler;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -3784,7 +3691,7 @@ module.exports = DraftEditorEditHandler;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 var ReactDOMComet = __webpack_require__(961);
@@ -3805,7 +3712,7 @@ module.exports = flushControlled;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -3826,7 +3733,7 @@ var invariant = __webpack_require__(646);
 
 var isHTMLBRElement = __webpack_require__(2623);
 
-var setDraftEditorSelection = (__webpack_require__(4660).setDraftEditorSelection);
+var setDraftEditorSelection = (__webpack_require__(4660)/* .setDraftEditorSelection */ .R);
 
 /**
  * All leaf nodes in the editor are spans with single text nodes. Leaf
@@ -3972,7 +3879,7 @@ module.exports = DraftEditorLeaf;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This is unstable and not part of the public API and should not be used by
@@ -4087,7 +3994,7 @@ module.exports = DraftEditorNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -4153,7 +4060,7 @@ module.exports = DraftEditorPlaceholder;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -4330,7 +4237,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 var DraftEntityInstance = __webpack_require__(5407);
@@ -4544,7 +4451,7 @@ module.exports = DraftEntity;
  *
  * @legacyServerCallableInstance
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -4610,7 +4517,7 @@ module.exports = DraftEntityInstance;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -4739,7 +4646,7 @@ module.exports = {
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -4893,7 +4800,7 @@ module.exports = DraftModifier;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -4933,7 +4840,7 @@ module.exports = DraftOffsetKey;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -5008,7 +4915,7 @@ module.exports = DraftPasteProcessor;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -5057,7 +4964,7 @@ module.exports = DraftRemovableWord;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -5091,7 +4998,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This is unstable and not part of the public API and should not be used by
@@ -5257,7 +5164,7 @@ module.exports = DraftTreeAdapter;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This is unstable and not part of the public API and should not be used by
@@ -5435,7 +5342,7 @@ module.exports = DraftTreeInvariants;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -5484,7 +5391,7 @@ module.exports = EditorBidiService;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6082,7 +5989,7 @@ module.exports = EditorState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6127,7 +6034,7 @@ module.exports = KeyBindingUtil;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6145,7 +6052,7 @@ module.exports = KeyBindingUtil;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6435,7 +6342,7 @@ module.exports = RichTextEditorUtil;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6515,7 +6422,7 @@ module.exports = SecondaryClipboard;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6650,7 +6557,7 @@ module.exports = SelectionState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6691,7 +6598,7 @@ module.exports = adjustBlockDepthForContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6725,7 +6632,7 @@ module.exports = applyEntityToContentBlock;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6771,7 +6678,7 @@ module.exports = applyEntityToContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -6907,7 +6814,7 @@ module.exports = convertFromDraftStateToRaw;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -7708,7 +7615,7 @@ module.exports = convertFromHTMLToContentBlocks;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -7940,7 +7847,7 @@ module.exports = convertFromRawToDraftState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -7977,7 +7884,7 @@ module.exports = createCharacterList;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8023,7 +7930,7 @@ module.exports = decodeEntityRanges;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8074,7 +7981,7 @@ module.exports = decodeInlineStyleRanges;
  * Provides utilities for handling draftjs keys.
  *
  * @emails oncall+draft_js
- *
+ * 
  * @format
  */
 
@@ -8100,7 +8007,7 @@ module.exports = {
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8309,7 +8216,7 @@ module.exports = editOnBeforeInput;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8370,7 +8277,7 @@ module.exports = editOnBlur;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8406,7 +8313,7 @@ module.exports = editOnCompositionStart;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8446,7 +8353,7 @@ module.exports = editOnCopy;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8523,7 +8430,7 @@ module.exports = editOnCut;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8551,7 +8458,7 @@ module.exports = editOnDragOver;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8579,7 +8486,7 @@ module.exports = editOnDragStart;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8630,7 +8537,7 @@ module.exports = editOnFocus;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -8847,7 +8754,7 @@ module.exports = editOnInput;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9074,7 +8981,7 @@ module.exports = editOnKeyDown;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9263,7 +9170,7 @@ module.exports = editOnPaste;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9326,7 +9233,7 @@ module.exports = editOnSelect;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9376,7 +9283,7 @@ module.exports = encodeEntityRanges;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9449,7 +9356,7 @@ module.exports = encodeInlineStyleRanges;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 var UnicodeUtils = __webpack_require__(580);
@@ -9653,7 +9560,7 @@ module.exports = expandRangeToStartOfLine;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9697,7 +9604,7 @@ module.exports = findAncestorOffsetKey;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9744,7 +9651,7 @@ module.exports = findRangesImmutable;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9778,7 +9685,7 @@ module.exports = generateRandomKey;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9902,7 +9809,7 @@ module.exports = getCharacterRemovalRange;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -9934,7 +9841,7 @@ module.exports = getContentEditableContainer;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10002,7 +9909,7 @@ module.exports = getContentStateFragment;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 function getCorrectDocumentFromNode(node) {
@@ -10028,7 +9935,7 @@ module.exports = getCorrectDocumentFromNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10178,7 +10085,7 @@ module.exports = getDefaultKeyBinding;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10226,7 +10133,7 @@ module.exports = getDraftEditorSelection;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10427,7 +10334,7 @@ module.exports = getDraftEditorSelectionWithNodes;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10498,7 +10405,7 @@ module.exports = getEntityKeyForSelection;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10532,7 +10439,7 @@ module.exports = getFragmentFromSelection;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  *
  * This is unstable and not part of the public API and should not be used by
@@ -10586,7 +10493,7 @@ module.exports = getNextDelimiterBlockKey;
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- *
+ * 
  * @typechecks
  * @format
  */
@@ -10622,7 +10529,7 @@ module.exports = getOwnObjectValues;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10698,7 +10605,7 @@ module.exports = getRangeBoundingClientRect;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10770,7 +10677,7 @@ module.exports = getRangeClientRects;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10815,7 +10722,7 @@ module.exports = getRangesForDraftEntity;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10857,7 +10764,7 @@ module.exports = getSafeBodyFromHTML;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10904,7 +10811,7 @@ module.exports = getSelectionOffsetKeyForNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -10996,7 +10903,7 @@ module.exports = getTextContentFromFiles;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11085,7 +10992,7 @@ module.exports = getUpdatedSelectionState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11140,7 +11047,7 @@ module.exports = getVisibleSelectionRect;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 function getWindowForNode(node) {
@@ -11166,7 +11073,7 @@ module.exports = getWindowForNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  */
 
 
@@ -11191,7 +11098,7 @@ module.exports = function (name) {
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11453,7 +11360,7 @@ module.exports = insertFragmentIntoContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11496,7 +11403,7 @@ module.exports = insertIntoList;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11557,7 +11464,7 @@ module.exports = insertTextIntoContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 function isElement(node) {
@@ -11583,7 +11490,7 @@ module.exports = isElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11613,7 +11520,7 @@ module.exports = isEventHandled;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 var isElement = __webpack_require__(3816);
@@ -11643,7 +11550,7 @@ module.exports = isHTMLAnchorElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 var isElement = __webpack_require__(3816);
@@ -11673,7 +11580,7 @@ module.exports = isHTMLBRElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 function isHTMLElement(node) {
@@ -11709,7 +11616,7 @@ module.exports = isHTMLElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 var isElement = __webpack_require__(3816);
@@ -11739,7 +11646,7 @@ module.exports = isHTMLImageElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 function isInstanceOfNode(target) {
@@ -11778,7 +11685,7 @@ module.exports = isInstanceOfNode;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11828,7 +11735,7 @@ module.exports = isSelectionAtLeafStart;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11854,7 +11761,7 @@ module.exports = isSoftNewlineEvent;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11910,7 +11817,7 @@ module.exports = keyCommandBackspaceToStartOfLine;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -11966,7 +11873,7 @@ module.exports = keyCommandBackspaceWord;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12018,7 +11925,7 @@ module.exports = keyCommandDeleteWord;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12047,7 +11954,7 @@ module.exports = keyCommandInsertNewline;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12090,7 +11997,7 @@ module.exports = keyCommandMoveSelectionToEndOfBlock;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12133,7 +12040,7 @@ module.exports = keyCommandMoveSelectionToStartOfBlock;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12185,7 +12092,7 @@ module.exports = keyCommandPlainBackspace;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12237,7 +12144,7 @@ module.exports = keyCommandPlainDelete;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12319,7 +12226,7 @@ module.exports = keyCommandTransposeCharacters;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12375,7 +12282,7 @@ module.exports = keyCommandUndo;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12415,7 +12322,7 @@ module.exports = modifyBlockForContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12590,7 +12497,7 @@ module.exports = moveBlockInContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12652,7 +12559,7 @@ module.exports = moveSelectionBackward;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12707,7 +12614,7 @@ module.exports = moveSelectionForward;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12823,7 +12730,7 @@ module.exports = randomizeBlockMapKeys;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -12952,7 +12859,7 @@ module.exports = removeEntitiesAtEdges;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -13304,7 +13211,7 @@ module.exports = removeRangeFromContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -13385,7 +13292,7 @@ module.exports = removeTextWithStrategy;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -13411,7 +13318,7 @@ module.exports = sanitizeDraftText;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -13698,8 +13605,8 @@ function addPointToSelection(selection, node, offset, selectionState) {
 }
 
 module.exports = {
-  setDraftEditorSelection: setDraftEditorSelection,
-  addFocusToSelection: addFocusToSelection
+  R: setDraftEditorSelection,
+  ...(/* unused pure expression */ null && (addFocusToSelection))
 };
 
 /***/ },
@@ -13715,7 +13622,7 @@ module.exports = {
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -13857,7 +13764,7 @@ module.exports = splitBlockInContentState;
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- *
+ * 
  * @emails oncall+draft_js
  */
 
@@ -13882,7 +13789,7 @@ module.exports = splitTextIntoTextBlocks;
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @typechecks
- *
+ * 
  * @format
  */
 
@@ -14291,7 +14198,7 @@ module.exports = uuid;
       var array = this._array;
       var maxIndex = array.length - 1;
       var ii = 0;
-      return new Iterator(function()
+      return new Iterator(function() 
         {return ii > maxIndex ?
           iteratorDone() :
           iteratorValue(type, ii, array[reverse ? maxIndex - ii++ : ii++])}
@@ -14762,7 +14669,7 @@ module.exports = uuid;
 
     Repeat.prototype.__iterator = function(type, reverse) {var this$0 = this;
       var ii = 0;
-      return new Iterator(function()
+      return new Iterator(function() 
         {return ii < this$0.size ? iteratorValue(type, ii++, this$0._value) : iteratorDone()}
       );
     };
@@ -16946,7 +16853,7 @@ module.exports = uuid;
         return flipSequence;
       };
     }
-    reversedSequence.get = function(key, notSetValue)
+    reversedSequence.get = function(key, notSetValue) 
       {return iterable.get(useKeys ? key : -1 - key, notSetValue)};
     reversedSequence.has = function(key )
       {return iterable.has(useKeys ? key : -1 - key)};
@@ -17141,7 +17048,7 @@ module.exports = uuid;
         return this.cacheResult().__iterate(fn, reverse);
       }
       var iterations = 0;
-      iterable.__iterate(function(v, k, c)
+      iterable.__iterate(function(v, k, c) 
         {return predicate.call(context, v, k, c) && ++iterations && fn(v, k, this$0)}
       );
       return iterations;
@@ -17332,7 +17239,7 @@ module.exports = uuid;
     interposedSequence.size = iterable.size && iterable.size * 2 -1;
     interposedSequence.__iterateUncached = function(fn, reverse) {var this$0 = this;
       var iterations = 0;
-      iterable.__iterate(function(v, k)
+      iterable.__iterate(function(v, k) 
         {return (!iterations || fn(separator, iterations++, this$0) !== false) &&
         fn(v, iterations++, this$0) !== false},
         reverse
@@ -19359,7 +19266,7 @@ module.exports = Style;
  *
  * @typechecks
  * @stub
- *
+ * 
  */
  // \u00a1-\u00b1\u00b4-\u00b8\u00ba\u00bb\u00bf
 //             is latin supplement punctuation except fractions and superscript
@@ -19395,7 +19302,7 @@ module.exports = {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -19434,7 +19341,7 @@ module.exports = URI;
  * LICENSE file in the root directory of this source tree.
  *
  * @typechecks
- *
+ * 
  */
 
 /**
@@ -19597,7 +19504,7 @@ module.exports = UnicodeBidi;
  * LICENSE file in the root directory of this source tree.
  *
  * @typechecks
- *
+ * 
  */
 
 /**
@@ -19714,7 +19621,7 @@ module.exports = UnicodeBidiDirection;
  * LICENSE file in the root directory of this source tree.
  *
  * @typechecks
- *
+ * 
  */
 
 /**
@@ -20828,7 +20735,7 @@ module.exports = camelize;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 var isTextNode = __webpack_require__(5423);
 /*eslint-disable no-bitwise */
@@ -21040,7 +20947,7 @@ module.exports = cx;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 function makeEmptyFunction(arg) {
   return function () {
@@ -21426,7 +21333,7 @@ module.exports = getUnboundedScrollPosition;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  * @typechecks
  */
 function getViewportWidth() {
@@ -21529,7 +21436,7 @@ module.exports = hyphenate;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -21642,7 +21549,7 @@ module.exports = isTextNode;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  * @typechecks static-only
  */
 
@@ -21738,7 +21645,7 @@ module.exports = mapObject;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  * @typechecks static-only
  */
 
@@ -21773,7 +21680,7 @@ module.exports = memoizeStringOnly;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 var nullthrows = function nullthrows(x) {
   if (x != null) {
@@ -22241,7 +22148,7 @@ module.exports = warning;
       var array = this._array;
       var maxIndex = array.length - 1;
       var ii = 0;
-      return new Iterator(function()
+      return new Iterator(function() 
         {return ii > maxIndex ?
           iteratorDone() :
           iteratorValue(type, ii, array[reverse ? maxIndex - ii++ : ii++])}
@@ -22712,7 +22619,7 @@ module.exports = warning;
 
     Repeat.prototype.__iterator = function(type, reverse) {var this$0 = this;
       var ii = 0;
-      return new Iterator(function()
+      return new Iterator(function() 
         {return ii < this$0.size ? iteratorValue(type, ii++, this$0._value) : iteratorDone()}
       );
     };
@@ -25056,7 +24963,7 @@ module.exports = warning;
         return flipSequence;
       };
     }
-    reversedSequence.get = function(key, notSetValue)
+    reversedSequence.get = function(key, notSetValue) 
       {return iterable.get(useKeys ? key : -1 - key, notSetValue)};
     reversedSequence.has = function(key )
       {return iterable.has(useKeys ? key : -1 - key)};
@@ -25255,7 +25162,7 @@ module.exports = warning;
         return this.cacheResult().__iterate(fn, reverse);
       }
       var iterations = 0;
-      iterable.__iterate(function(v, k, c)
+      iterable.__iterate(function(v, k, c) 
         {return predicate.call(context, v, k, c) && ++iterations && fn(v, k, this$0)}
       );
       return iterations;
@@ -25446,7 +25353,7 @@ module.exports = warning;
     interposedSequence.size = iterable.size && iterable.size * 2 -1;
     interposedSequence.__iterateUncached = function(fn, reverse) {var this$0 = this;
       var iterations = 0;
-      iterable.__iterate(function(v, k)
+      iterable.__iterate(function(v, k) 
         {return (!iterations || fn(separator, iterations++, this$0) !== false) &&
         fn(v, iterations++, this$0) !== false},
         reverse
@@ -26303,7 +26210,7 @@ module.exports = warning;
         if (isProtoKey(k)) {
           return;
         }
-
+        
         object[k] = v;
       });
       return object;
@@ -27724,7 +27631,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
    Copyright © 2012-2025 Faisal Salman <f@faisalman.com>
    MIT License *//*
    Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
-   Supports browser & node.js environment.
+   Supports browser & node.js environment. 
    Demo   : https://faisalman.github.io/ua-parser-js
    Source : https://github.com/faisalman/ua-parser-js */
 /////////////////////////////////////////////////////////////////////////////////
@@ -27961,7 +27868,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
             /\b(?:mxbrowser|mxios|myie2)\/?([-\w\.]*)\b/i                       // Maxthon
             ], [VERSION, [NAME, 'Maxthon']], [
             /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /(lunascape|maxthon|netfront|jasmine|blazer|sleipnir)[\/ ]?([\w\.]*)/i,
+            /(lunascape|maxthon|netfront|jasmine|blazer|sleipnir)[\/ ]?([\w\.]*)/i,      
                                                                                 // Lunascape/Maxthon/Netfront/Jasmine/Blazer/Sleipnir
             // Trident based
             /(avant|iemobile|slim(?:browser|boat|jet))[\/ ]?([\d\.]*)/i,        // Avant/IEMobile/SlimBrowser/SlimBoat/Slimjet
@@ -28091,7 +27998,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
                                                                                 // Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Obigo/Mosaic/Go/ICE/UP.Browser/Ladybird
             /\b(links) \(([\w\.]+)/i                                            // Links
             ], [NAME, [VERSION, /_/g, '.']], [
-
+            
             /(cobalt)\/([\w\.]+)/i                                              // Cobalt
             ], [NAME, [VERSION, /master.|lts./, ""]]
         ],
@@ -28290,7 +28197,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
             /droid.+; (m[1-5] note) bui/i,
             /\bmz-([-\w]{2,})/i
             ], [MODEL, [VENDOR, 'Meizu'], [TYPE, MOBILE]], [
-
+                
             // Ulefone
             /; ((?:power )?armor(?:[\w ]{0,8}))(?: bui|\))/i
             ], [MODEL, [VENDOR, 'Ulefone'], [TYPE, MOBILE]], [
@@ -28318,7 +28225,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
             /archos ?(5|gamepad2?|([\w ]*[t1789]|hello) ?\d+[\w ]*)( b|\))/i
             ], [MODEL, [VENDOR, 'Archos'], [TYPE, TABLET]], [
             /archos ([\w ]+)( b|\))/i,
-            /; (ac[3-6]\d\w{2,8})( b|\))/i
+            /; (ac[3-6]\d\w{2,8})( b|\))/i 
             ], [MODEL, [VENDOR, 'Archos'], [TYPE, MOBILE]], [
 
             // MIXED
@@ -28567,7 +28474,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 
             // Mobile OSes
             /droid ([\w\.]+)\b.+(android[- ]x86|harmonyos)/i                    // Android-x86/HarmonyOS
-            ], [VERSION, NAME], [
+            ], [VERSION, NAME], [                                               
             /(ubuntu) ([\w\.]+) like android/i                                  // Ubuntu Touch
             ], [[NAME, /(.+)/, '$1 Touch'], VERSION], [
                                                                                 // Android/Blackberry/WebOS/QNX/Bada/RIM/KaiOS/Maemo/MeeGo/S40/Sailfish OS/OpenHarmony/Tizen
@@ -28689,7 +28596,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
             _os[VERSION] = undefined;
             rgxMapper.call(_os, _ua, _rgxmap.os);
             if (_isSelfNav && !_os[NAME] && _uach && _uach.platform && _uach.platform != 'Unknown') {
-                _os[NAME] = _uach.platform
+                _os[NAME] = _uach.platform  
                                     .replace(/chrome os/i, CHROMIUM_OS)
                                     .replace(/macos/i, MAC_OS);           // backward compatibility
             }
@@ -28776,7 +28683,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	const __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -28790,48 +28697,269 @@ var __WEBPACK_AMD_DEFINE_RESULT__;//////////////////////////////////////////////
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/amd options */
-/******/ 	(() => {
-/******/ 		__webpack_require__.amdO = {};
-/******/ 	})();
-/******/
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
+/******/ 	__webpack_require__.amdO = {};
+/******/ 	
+/******/ 	/* webpack/runtime/concatenation wrap */
+/******/ 	// wrap a concatenated module body as a lazy, memoized accessor; mod is
+/******/ 	// set before the body runs so re-entrant calls (require cycles) observe
+/******/ 	// the partial exports like Node.js
+/******/ 	__webpack_require__.cw = (body) => {
+/******/ 		var mod;
+/******/ 		return () => {
+/******/ 			if (body) {
+/******/ 				var fn = body;
+/******/ 				body = 0;
+/******/ 				mod = { exports: {} };
+/******/ 				fn.call(mod.exports, mod, mod.exports);
 /******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/
-/******/ 	/* webpack/runtime/set anonymous default export name */
-/******/ 	(() => {
-/******/ 		// set .name for anonymous default exports per ES spec
-/******/ 		// skipped when the property is non-configurable (pre-ES2015 engines),
-/******/ 		// where Object.defineProperty would throw
-/******/ 		__webpack_require__.dn = (x) => {
-/******/ 			var descriptor = Object.getOwnPropertyDescriptor(x, "name");
-/******/ 			if (!descriptor || (!descriptor.writable && descriptor.configurable)) Object.defineProperty(x, "name", { value: "default", configurable: true });
+/******/ 			return mod.exports;
 /******/ 		};
+/******/ 	};
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	__webpack_require__.g = (function() {
+/******/ 		if (typeof globalThis === 'object') return globalThis;
+/******/ 		try {
+/******/ 			return this || new Function('return this')();
+/******/ 		} catch (e) {
+/******/ 			if (typeof window === 'object') return window;
+/******/ 		}
 /******/ 	})();
-/******/
+/******/ 	
+/******/ 	/* webpack/runtime/set anonymous default export name */
+/******/ 	// set .name for anonymous default exports per ES spec
+/******/ 	// skipped when the property is non-configurable (pre-ES2015 engines),
+/******/ 	// where Object.defineProperty would throw
+/******/ 	__webpack_require__.dn = (x) => {
+/******/ 		var descriptor = Object.getOwnPropertyDescriptor(x, "name");
+/******/ 		if (!descriptor || (!descriptor.writable && descriptor.configurable)) Object.defineProperty(x, "name", { value: "default", configurable: true });
+/******/ 	};
+/******/ 	
 /************************************************************************/
 let __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/AtomicBlockUtils.js
+var AtomicBlockUtils_namespaceFn = () => {
+	return __webpack_require__(5889);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/BlockMapBuilder.js
+var BlockMapBuilder_namespaceFn = () => {
+	return __webpack_require__(5748);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/CharacterMetadata.js
+var CharacterMetadata_namespaceFn = () => {
+	return __webpack_require__(3018);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/CompositeDraftDecorator.js
+var CompositeDraftDecorator_namespaceFn = () => {
+	return __webpack_require__(9083);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/ContentBlock.js
+var ContentBlock_namespaceFn = () => {
+	return __webpack_require__(6840);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/ContentState.js
+var ContentState_namespaceFn = () => {
+	return __webpack_require__(7656);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DefaultDraftBlockRenderMap.js
+var DefaultDraftBlockRenderMap_namespaceFn = () => {
+	return __webpack_require__(3387);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DefaultDraftInlineStyle.js
+var DefaultDraftInlineStyle_namespaceFn = () => {
+	return __webpack_require__(7918);
+};
+
+// MODULE: ./node_modules/draft-js/lib/Draft.js
+var Draft_namespaceFn = /*#__PURE__*/__webpack_require__.cw(function(module, exports) {
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ * 
+ */
+
+
+var AtomicBlockUtils = (AtomicBlockUtils_namespaceFn());
+
+var BlockMapBuilder = (BlockMapBuilder_namespaceFn());
+
+var CharacterMetadata = (CharacterMetadata_namespaceFn());
+
+var CompositeDraftDecorator = (CompositeDraftDecorator_namespaceFn());
+
+var ContentBlock = (ContentBlock_namespaceFn());
+
+var ContentState = (ContentState_namespaceFn());
+
+var DefaultDraftBlockRenderMap = (DefaultDraftBlockRenderMap_namespaceFn());
+
+var DefaultDraftInlineStyle = (DefaultDraftInlineStyle_namespaceFn());
+
+var DraftEditor = (DraftEditor_react_namespaceFn());
+
+var DraftEditorBlock = (DraftEditorBlock_react_namespaceFn());
+
+var DraftEntity = (DraftEntity_namespaceFn());
+
+var DraftModifier = (DraftModifier_namespaceFn());
+
+var DraftEntityInstance = (DraftEntityInstance_namespaceFn());
+
+var EditorState = (EditorState_namespaceFn());
+
+var KeyBindingUtil = (KeyBindingUtil_namespaceFn());
+
+var RawDraftContentState = (RawDraftContentState_namespaceFn());
+
+var RichTextEditorUtil = (RichTextEditorUtil_namespaceFn());
+
+var SelectionState = (SelectionState_namespaceFn());
+
+var convertFromDraftStateToRaw = (convertFromDraftStateToRaw_namespaceFn());
+
+var convertFromRawToDraftState = (convertFromRawToDraftState_namespaceFn());
+
+var generateRandomKey = (generateRandomKey_namespaceFn());
+
+var getDefaultKeyBinding = (getDefaultKeyBinding_namespaceFn());
+
+var getVisibleSelectionRect = (getVisibleSelectionRect_namespaceFn());
+
+var convertFromHTML = (convertFromHTMLToContentBlocks_namespaceFn());
+
+var DraftPublic = {
+  Editor: DraftEditor,
+  EditorBlock: DraftEditorBlock,
+  EditorState: EditorState,
+  CompositeDecorator: CompositeDraftDecorator,
+  Entity: DraftEntity,
+  EntityInstance: DraftEntityInstance,
+  BlockMapBuilder: BlockMapBuilder,
+  CharacterMetadata: CharacterMetadata,
+  ContentBlock: ContentBlock,
+  ContentState: ContentState,
+  RawDraftContentState: RawDraftContentState,
+  SelectionState: SelectionState,
+  AtomicBlockUtils: AtomicBlockUtils,
+  KeyBindingUtil: KeyBindingUtil,
+  Modifier: DraftModifier,
+  RichUtils: RichTextEditorUtil,
+  DefaultDraftBlockRenderMap: DefaultDraftBlockRenderMap,
+  DefaultDraftInlineStyle: DefaultDraftInlineStyle,
+  convertFromHTML: convertFromHTML,
+  convertFromRaw: convertFromRawToDraftState,
+  convertToRaw: convertFromDraftStateToRaw,
+  genKey: generateRandomKey,
+  getDefaultKeyBinding: getDefaultKeyBinding,
+  getVisibleSelectionRect: getVisibleSelectionRect
+};
+module.exports = DraftPublic;
+});
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DraftEditor.react.js
+var DraftEditor_react_namespaceFn = () => {
+	return __webpack_require__(3299);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DraftEditorBlock.react.js
+var DraftEditorBlock_react_namespaceFn = () => {
+	return __webpack_require__(1124);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DraftEntity.js
+var DraftEntity_namespaceFn = () => {
+	return __webpack_require__(1608);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DraftEntityInstance.js
+var DraftEntityInstance_namespaceFn = () => {
+	return __webpack_require__(5407);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/DraftModifier.js
+var DraftModifier_namespaceFn = () => {
+	return __webpack_require__(9938);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/EditorState.js
+var EditorState_namespaceFn = () => {
+	return __webpack_require__(2242);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/KeyBindingUtil.js
+var KeyBindingUtil_namespaceFn = () => {
+	return __webpack_require__(9414);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/RawDraftContentState.js
+var RawDraftContentState_namespaceFn = () => {
+	return __webpack_require__(6429);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/RichTextEditorUtil.js
+var RichTextEditorUtil_namespaceFn = () => {
+	return __webpack_require__(7018);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/SelectionState.js
+var SelectionState_namespaceFn = () => {
+	return __webpack_require__(1381);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/convertFromDraftStateToRaw.js
+var convertFromDraftStateToRaw_namespaceFn = () => {
+	return __webpack_require__(7470);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/convertFromHTMLToContentBlocks.js
+var convertFromHTMLToContentBlocks_namespaceFn = () => {
+	return __webpack_require__(4712);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/convertFromRawToDraftState.js
+var convertFromRawToDraftState_namespaceFn = () => {
+	return __webpack_require__(428);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/generateRandomKey.js
+var generateRandomKey_namespaceFn = () => {
+	return __webpack_require__(6991);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/getDefaultKeyBinding.js
+var getDefaultKeyBinding_namespaceFn = () => {
+	return __webpack_require__(7811);
+};
+
+// EXTERNAL MODULE: ./node_modules/draft-js/lib/getVisibleSelectionRect.js
+var getVisibleSelectionRect_namespaceFn = () => {
+	return __webpack_require__(894);
+};
 
 ;// ./node_modules/draft-js-export-html/esm/helpers/combineOrderedStyles.js
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -29079,11 +29207,12 @@ function getStyleRanges(text, charMetaList) {
   ranges.push([text.slice(rangeStart), charStyle]);
   return ranges;
 }
-// EXTERNAL MODULE: ./node_modules/draft-js/lib/Draft.js
-var Draft = __webpack_require__(5143);
+;// ./node_modules/draft-js/lib/Draft.js
+Draft_namespaceFn();
+
 ;// ./node_modules/draft-js-utils/esm/callModifierForSelectedBlocks.js
-/* unused harmony import specifier */ var SelectionState;
-/* unused harmony import specifier */ var EditorState;
+/* unused harmony import specifier */ var callModifierForSelectedBlocks_SelectionState;
+/* unused harmony import specifier */ var callModifierForSelectedBlocks_EditorState;
 /* unused harmony import specifier */ var getSelectedBlocks;
 
 
@@ -29135,7 +29264,7 @@ var Draft = __webpack_require__(5143);
       selectionEnd = block.getText().length;
     }
 
-    var selection = new SelectionState({
+    var selection = new callModifierForSelectedBlocks_SelectionState({
       anchorKey: currentBlockKey,
       anchorOffset: selectionStart,
       focusKey: currentBlockKey,
@@ -29143,7 +29272,7 @@ var Draft = __webpack_require__(5143);
     });
     finalEditorState = modifier.apply(void 0, [finalEditorState, selection].concat(args));
   });
-  return EditorState.forceSelection(finalEditorState, currentSelection);
+  return callModifierForSelectedBlocks_EditorState.forceSelection(finalEditorState, currentSelection);
 });
 __webpack_require__.dn(callModifierForSelectedBlocks);
 ;// ./node_modules/draft-js-utils/esm/main.js
