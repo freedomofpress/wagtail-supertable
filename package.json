@@ -4,12 +4,23 @@
   "description": "An extended wagtail table block.",
   "scripts": {
     "build": "webpack --config-node-env production",
-    "start": "webpack watch --config-node-env development --devtool eval-source-map"
+    "start": "webpack watch --config-node-env development --devtool eval-source-map",
+    "js-lint": "eslint .",
+    "stylelint": "stylelint \"wagtailsupertable/static/css/**/*.css\""
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
+    "eslint": "^9.39.5",
+    "eslint-plugin-import": "^2.32.0",
+    "fpf-wagtail-common": "github:freedomofpress/fpf-wagtail-common#v0.2.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.9",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0",
     "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3"
-  }
+  },
+  "prettier": "fpf-wagtail-common/config/prettier.json"
 }
