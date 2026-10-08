@@ -29910,166 +29910,208 @@ function stateToHTML(content, options) {
 /* global $, initTable */
 
 
-( function( window ) {
-  function createTableRichTextEditor() {
-    const RichTextEditor = window.Handsontable.editors.BaseEditor.prototype.extend();
+(function (window) {
+	function createTableRichTextEditor() {
+		const RichTextEditor =
+			window.Handsontable.editors.BaseEditor.prototype.extend();
 
-    RichTextEditor.prototype.beginEditing = function() {
-      const initialCellValue = this.instance.getValue();
-      let contentState;
-      const blocksFromHTML = initialCellValue ? window.DraftJS.convertFromHTML( initialCellValue ) : null;
-      if ( blocksFromHTML && blocksFromHTML.contentBlocks ) {
-        contentState = window.DraftJS.ContentState.createFromBlockArray( blocksFromHTML.contentBlocks, blocksFromHTML.entityMap );
-      } else {
-        contentState = window.DraftJS.ContentState.createFromText( '' );
-      }
+		RichTextEditor.prototype.beginEditing = function () {
+			const initialCellValue = this.instance.getValue();
+			let contentState;
+			const blocksFromHTML = initialCellValue
+				? window.DraftJS.convertFromHTML(initialCellValue)
+				: null;
+			if (blocksFromHTML && blocksFromHTML.contentBlocks) {
+				contentState = window.DraftJS.ContentState.createFromBlockArray(
+					blocksFromHTML.contentBlocks,
+					blocksFromHTML.entityMap,
+				);
+			} else {
+				contentState = window.DraftJS.ContentState.createFromText("");
+			}
 
-      const cellValue = window.DraftJS.convertToRaw( contentState );
-      if ( cellValue.entityMap ) {
-        for ( const entity in cellValue.entityMap ) {
-          if ( cellValue.entityMap[entity] && cellValue.entityMap[entity].data ) {
-            cellValue.entityMap[entity].data.url = cellValue.entityMap[entity].data.href;
-            if ( cellValue.entityMap[entity].data.url.startsWith( '/documents/' ) ) {
-              cellValue.entityMap[entity].type = 'DOCUMENT';
-            }
-          }
-        }
-      }
-      const cellProperties = this.cellProperties;
-      const instance = this.instance;
+			const cellValue = window.DraftJS.convertToRaw(contentState);
+			if (cellValue.entityMap) {
+				for (const entity in cellValue.entityMap) {
+					if (cellValue.entityMap[entity] && cellValue.entityMap[entity].data) {
+						cellValue.entityMap[entity].data.url =
+							cellValue.entityMap[entity].data.href;
+						if (
+							cellValue.entityMap[entity].data.url.startsWith("/documents/")
+						) {
+							cellValue.entityMap[entity].type = "DOCUMENT";
+						}
+					}
+				}
+			}
+			const cellProperties = this.cellProperties;
+			const instance = this.instance;
 
-      instance.deselectCell();
-      const modalDom = showModal();
-      const editorHtml = _createRichTextEditor( cellValue );
+			instance.deselectCell();
+			const modalDom = showModal();
+			const editorHtml = _createRichTextEditor(cellValue);
 
-      modalDom.addEventListener( 'save-btn:clicked', function() {
-        const editorValue = editorHtml.value;
-        let html;
+			modalDom.addEventListener("save-btn:clicked", function () {
+				const editorValue = editorHtml.value;
+				let html;
 
-        /* If editor is empty then set html to null becasue some 3rd parrty helper
+				/* If editor is empty then set html to null becasue some 3rd parrty helper
             functions don't play nicely with empty valu cells */
-        if ( !editorValue || editorValue === 'null' ) {
-          html = null;
-        } else {
-          const raw = JSON.parse( editorValue );
-          const state = window.DraftJS.convertFromRaw( raw );
-          const options = {
-            entityStyleFn: entity => {
-              const entityType = entity.get( 'type' ).toLowerCase();
-              if ( entityType === 'document' ) {
-                const data = entity.getData();
-                return {
-                  element: 'a',
-                  attributes: {
-                    'href': data.url,
-                    'data-linktype': 'DOCUMENT',
-                    'data-id': data.id,
-                    'type': 'DOCUMENT'
-                  },
-                  style: {
-                  }
-                };
-              }
-              return null;
-            }
-          };
-          html = stateToHTML( state, options );
-        }
+				if (!editorValue || editorValue === "null") {
+					html = null;
+				} else {
+					const raw = JSON.parse(editorValue);
+					const state = window.DraftJS.convertFromRaw(raw);
+					const options = {
+						entityStyleFn: (entity) => {
+							const entityType = entity.get("type").toLowerCase();
+							if (entityType === "document") {
+								const data = entity.getData();
+								return {
+									element: "a",
+									attributes: {
+										href: data.url,
+										"data-linktype": "DOCUMENT",
+										"data-id": data.id,
+										type: "DOCUMENT",
+									},
+									style: {},
+								};
+							}
+							return null;
+						},
+					};
+					html = stateToHTML(state, options);
+				}
 
-        instance.setDataAtCell( cellProperties.row, cellProperties.col, html );
-        instance.render();
-      } );
+				instance.setDataAtCell(cellProperties.row, cellProperties.col, html);
+				instance.render();
+			});
+		};
 
-    };
+		// Put editor in dedicated namespace
+		window.Handsontable.editors.RichTextEditor = RichTextEditor;
 
-    // Put editor in dedicated namespace
-    window.Handsontable.editors.RichTextEditor = RichTextEditor;
+		// Register alias
+		window.Handsontable.editors.registerEditor("richtext", RichTextEditor);
+	}
 
-    // Register alias
-    window.Handsontable.editors.registerEditor('richtext', RichTextEditor);
+	function setCustomContextMenus() {
+		window.Handsontable.hooks.add(
+			"afterMergeCells",
+			function (cellRange, mergeParent) {
+				saveMergeCellInformation(this, cellRange, mergeParent);
+			},
+		);
+		window.Handsontable.hooks.add(
+			"beforeContextMenuSetItems",
+			function (items) {
+				// Add richtext edit option in right click menu
+				var richtextMenu = items.find((item) => item.name == "richtext");
+				if (richtextMenu) {
+					richtextMenu.name = "Open richtext editor";
+					richtextMenu.key = "richtext";
+					richtextMenu.callback = makeEditorRichText;
+				}
 
+				// Add background color to cells
+				var colorMenu = items.find((item) => item.name == "color");
+				if (colorMenu) {
+					colorMenu.name = "Add background color";
+					colorMenu.key = "color";
+					colorMenu.submenu = {
+						items: [
+							{
+								key: "color:red",
+								name: "Red",
+								callback: setCellColor,
+							},
+							{
+								key: "color:green",
+								name: "Green",
+								callback: setCellColor,
+							},
+							{
+								key: "color:yellow",
+								name: "Yellow",
+								callback: setCellColor,
+							},
+						],
+					};
+				}
+			},
+		);
+	}
 
-  }
+	function saveMergeCellInformation(hot, cellRange, mergeParent) {
+		let oldClassName = hot.getCellMeta(
+			mergeParent.row,
+			mergeParent.col,
+		).className;
+		let mergeClassName = `rowspan-${mergeParent.rowspan} colspan-${mergeParent.colspan}`;
+		if (oldClassName) {
+			oldClassName = oldClassName
+				.replace(/rowspan-\d+/g, "")
+				.replace(/colspan-\d+/g, "")
+				.trim();
+			mergeClassName = oldClassName + " " + mergeClassName;
+		}
+		hot.setCellMeta(
+			mergeParent.row,
+			mergeParent.col,
+			"className",
+			mergeClassName,
+		);
+		for (let i = 1; i < mergeParent.rowspan; i++) {
+			hot.setCellMeta(
+				mergeParent.row + i,
+				mergeParent.col,
+				"className",
+				"hidden",
+			);
+		}
+		for (let i = 1; i < mergeParent.colspan; i++) {
+			hot.setCellMeta(
+				mergeParent.row,
+				mergeParent.col + i,
+				"className",
+				"hidden",
+			);
+		}
+		hot.render();
+	}
 
-  function setCustomContextMenus(){
-    window.Handsontable.hooks.add('afterMergeCells', function(cellRange, mergeParent) {
-      saveMergeCellInformation(this, cellRange, mergeParent);
-    })
-    window.Handsontable.hooks.add('beforeContextMenuSetItems', function(items) {
+	function makeEditorRichText(key, selection) {
+		this.setCellMeta(
+			selection[0].start.row,
+			selection[0].start.col,
+			"editor",
+			"richtext",
+		);
+		this.selectCell(selection[0].start.row, selection[0].start.col);
+		this.getActiveEditor().beginEditing();
+	}
 
-      // Add richtext edit option in right click menu
-      var richtextMenu = items.find((item) => item.name == "richtext");
-      if (richtextMenu) {
-        richtextMenu.name = "Open richtext editor";
-        richtextMenu.key = "richtext";
-        richtextMenu.callback = makeEditorRichText;
-      }
+	function setCellColor(key, opt) {
+		let color = key.substring(6);
+		for (let i = opt[0].start.row; i <= opt[0].end.row; i++) {
+			for (let j = opt[0].start.col; j <= opt[0].end.col; j++) {
+				this.setCellMeta(i, j, "className", color);
+				this.render();
+			}
+		}
+	}
 
-      // Add background color to cells
-      var colorMenu = items.find((item) => item.name == "color");
-      if (colorMenu) {
-        colorMenu.name = "Add background color";
-        colorMenu.key = "color";
-        colorMenu.submenu = {
-          items: [{
-            key: 'color:red',
-            name: 'Red',
-            callback: setCellColor
-          }, {
-            key: 'color:green',
-            name: 'Green',
-            callback: setCellColor
-          }, {
-            key: 'color:yellow',
-            name: 'Yellow',
-            callback: setCellColor
-          }]
-        }
-      }
-    });
-  }
+	function showModal() {
+		// Remove any prior instance
+		document
+			.querySelectorAll(".table-block-modal")
+			.forEach((el) => el.remove());
 
-  function saveMergeCellInformation(hot, cellRange, mergeParent) {
-    let oldClassName = hot.getCellMeta(mergeParent.row, mergeParent.col).className;
-    let mergeClassName = `rowspan-${mergeParent.rowspan} colspan-${mergeParent.colspan}`;
-    if (oldClassName) {
-      oldClassName = oldClassName.replace(/rowspan-\d+/g, "").replace(/colspan-\d+/g, "").trim()
-      mergeClassName = oldClassName + " " + mergeClassName;
-    }
-    hot.setCellMeta(mergeParent.row, mergeParent.col, 'className', mergeClassName)
-    for(let i = 1; i < mergeParent.rowspan; i++) {
-      hot.setCellMeta((mergeParent.row + i), mergeParent.col, 'className', 'hidden')
-    }
-    for(let i = 1; i < mergeParent.colspan; i++) {
-      hot.setCellMeta(mergeParent.row, mergeParent.col + i, 'className', 'hidden')
-    }
-    hot.render()
-  }
-
-  function makeEditorRichText(key, selection) {
-    this.setCellMeta(selection[0].start.row, selection[0].start.col, 'editor', 'richtext');
-    this.selectCell(selection[0].start.row, selection[0].start.col);
-    this.getActiveEditor().beginEditing();
-  }
-
-  function setCellColor(key, opt) {
-  	let color = key.substring(6);
-  	for (let i = opt[0].start.row; i <= opt[0].end.row; i++) {
-      for (let j = opt[0].start.col; j <= opt[0].end.col; j++) {
-        this.setCellMeta(i, j, 'className', color);
-        this.render();
-      }
-    }
-  }
-
-  function showModal() {
-    // Remove any prior instance
-    document.querySelectorAll('.table-block-modal').forEach((el) => el.remove());
-
-    const dialog = document.createElement('dialog');
-    dialog.className = 'table-block-modal';
-    dialog.setAttribute('aria-labelledby', 'table-block-modal-title');
-    dialog.innerHTML = `
+		const dialog = document.createElement("dialog");
+		dialog.className = "table-block-modal";
+		dialog.setAttribute("aria-labelledby", "table-block-modal-title");
+		dialog.innerHTML = `
       <button type="button" class="table-block-modal__close" aria-label="Close" data-close>×</button>
       <header class="table-block-modal__header">
         <h1 id="table-block-modal-title" class="icon icon-table">Edit Table Cell</h1>
@@ -30081,24 +30123,28 @@ function stateToHTML(content, options) {
         <button id="table-block-save-btn" type="button" class="button" data-save>Save</button>
       </footer>
     `;
-    document.body.appendChild(dialog);
+		document.body.appendChild(dialog);
 
-    dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+		dialog
+			.querySelector("[data-close]")
+			.addEventListener("click", () => dialog.close());
 
-    dialog.querySelector('[data-save]').addEventListener('click', (event) => {
-      dialog.dispatchEvent(
-        new CustomEvent('save-btn:clicked', { detail: { originalEvent: event } })
-      );
-      dialog.close();
-    });
+		dialog.querySelector("[data-save]").addEventListener("click", (event) => {
+			dialog.dispatchEvent(
+				new CustomEvent("save-btn:clicked", {
+					detail: { originalEvent: event },
+				}),
+			);
+			dialog.close();
+		});
 
-    dialog.addEventListener('close', () => dialog.remove());
+		dialog.addEventListener("close", () => dialog.remove());
 
-    dialog.showModal();
-    return dialog;
-  }
+		dialog.showModal();
+		return dialog;
+	}
 
-  /*  createRichTextEditor
+	/*  createRichTextEditor
 
       Code copied from
       https://github.com/wagtail/wagtail/blob/master/wagtail/admin/
@@ -30106,170 +30152,175 @@ function stateToHTML(content, options) {
 
       Modifications were made to add new form fields to the TableBlock in Wagtail admin and support the rich text editor within table cells.
       TODO: Refactor this code and submit PR to Wagtail repo. */
-  function _createRichTextEditor( initialValue ) {
-    const id = 'table-block-editor';
-    const editor = $( '#' + id ).attr( 'value', JSON.stringify( initialValue ) );
+	function _createRichTextEditor(initialValue) {
+		const id = "table-block-editor";
+		const editor = $("#" + id).attr("value", JSON.stringify(initialValue));
 
-    window.draftail.initEditor(
-      '#' + id,
-      {
-        entityTypes: [
-          {
-            type: 'LINK',
-            icon: 'link',
-            description: 'Link',
-            attributes: [ 'url', 'id', 'parentId' ],
-            whitelist: { href: '^(http:|https:|undefined$)' }
-          },
-          {
-            type: 'DOCUMENT',
-            icon: 'doc-full',
-            description: 'Document'
-          },
-          {
-            type: 'IMAGE',
-            icon: 'image',
-            description: 'Image'
-          }
-        ],
-        enableHorizontalRule: false,
-        enableLineBreak: false,
-        inlineStyles: [
-          {
-            type: 'BOLD',
-            icon: 'bold',
-            description: 'Bold'
-          },
-          {
-            type: 'ITALIC',
-            icon: 'italic',
-            description: 'Italic'
-          }
-        ],
-        blockTypes: [
-          {
-            label: 'H3',
-            type: 'header-three',
-            description: 'Heading 3'
-          },
-          {
-            label: 'H4',
-            type: 'header-four',
-            description: 'Heading 4'
-          },
-          {
-            label: 'H5',
-            type: 'header-five',
-            description: 'Heading 5'
-          },
-          {
-            type: 'ordered-list-item',
-            icon: 'list-ol',
-            description: 'Numbered list'
-          },
-          {
-            type: 'unordered-list-item',
-            icon: 'list-ul',
-            description: 'Bulleted list'
-          }
-        ]
-      },
-      document.currentScript
-    );
+		window.draftail.initEditor(
+			"#" + id,
+			{
+				entityTypes: [
+					{
+						type: "LINK",
+						icon: "link",
+						description: "Link",
+						attributes: ["url", "id", "parentId"],
+						whitelist: { href: "^(http:|https:|undefined$)" },
+					},
+					{
+						type: "DOCUMENT",
+						icon: "doc-full",
+						description: "Document",
+					},
+					{
+						type: "IMAGE",
+						icon: "image",
+						description: "Image",
+					},
+				],
+				enableHorizontalRule: false,
+				enableLineBreak: false,
+				inlineStyles: [
+					{
+						type: "BOLD",
+						icon: "bold",
+						description: "Bold",
+					},
+					{
+						type: "ITALIC",
+						icon: "italic",
+						description: "Italic",
+					},
+				],
+				blockTypes: [
+					{
+						label: "H3",
+						type: "header-three",
+						description: "Heading 3",
+					},
+					{
+						label: "H4",
+						type: "header-four",
+						description: "Heading 4",
+					},
+					{
+						label: "H5",
+						type: "header-five",
+						description: "Heading 5",
+					},
+					{
+						type: "ordered-list-item",
+						icon: "list-ol",
+						description: "Numbered list",
+					},
+					{
+						type: "unordered-list-item",
+						icon: "list-ul",
+						description: "Bulleted list",
+					},
+				],
+			},
+			document.currentScript,
+		);
 
-    const html = editor[0];
+		const html = editor[0];
 
-    return html;
-  }
+		return html;
+	}
 
-  function renderMergedCells(id) {
-    const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
-    if ($cell.length) {
-      $cell.each(function() {
-        var $c = $(this);
-        const classes = $c.attr('class').split(' ');
-        const rowspan_list = classes.filter((className) => (className.startsWith('rowspan-')));
-        const rowspan = parseInt(rowspan_list[0].replace('rowspan-', ''));
-        const colspan_list = classes.filter((className) => (className.startsWith('colspan-')));
-        const colspan = parseInt(colspan_list[0].replace('colspan-', ''));
-        $c.attr('rowspan', rowspan);
-        $c.attr('colspan', colspan);
-      });
-    }
-  }
+	function renderMergedCells(id) {
+		const $cell = $("#" + id + "-handsontable-container td[class*='rowspan-']");
+		if ($cell.length) {
+			$cell.each(function () {
+				var $c = $(this);
+				const classes = $c.attr("class").split(" ");
+				const rowspan_list = classes.filter((className) =>
+					className.startsWith("rowspan-"),
+				);
+				const rowspan = parseInt(rowspan_list[0].replace("rowspan-", ""));
+				const colspan_list = classes.filter((className) =>
+					className.startsWith("colspan-"),
+				);
+				const colspan = parseInt(colspan_list[0].replace("colspan-", ""));
+				$c.attr("rowspan", rowspan);
+				$c.attr("colspan", colspan);
+			});
+		}
+	}
 
-  function persistMergedCells(id) {
-    window.onload = function(){
-      renderMergedCells(id);
-    }
-    $('#' + id + '-handsontable-header').on('change', function() {
-      renderMergedCells(id);
-    });
-    $('#' + id + '-handsontable-col-header').on('change', function() {
-      renderMergedCells(id);
-    });
-    $('#' + id + '-handsontable-col-caption').on('change', function() {
-      renderMergedCells(id);
-    });
-    window.Handsontable.hooks.add('afterDeselect', function() {
-      renderMergedCells(id);
-    });
-    window.Handsontable.hooks.add('afterRender', function() {
-      renderMergedCells(id);
-    });
-  }
+	function persistMergedCells(id) {
+		window.onload = function () {
+			renderMergedCells(id);
+		};
+		$("#" + id + "-handsontable-header").on("change", function () {
+			renderMergedCells(id);
+		});
+		$("#" + id + "-handsontable-col-header").on("change", function () {
+			renderMergedCells(id);
+		});
+		$("#" + id + "-handsontable-col-caption").on("change", function () {
+			renderMergedCells(id);
+		});
+		window.Handsontable.hooks.add("afterDeselect", function () {
+			renderMergedCells(id);
+		});
+		window.Handsontable.hooks.add("afterRender", function () {
+			renderMergedCells(id);
+		});
+	}
 
-  function makeTableSortable(id) {
-    var tableInitialValue = JSON.parse($('#' + id).val());
-    if (tableInitialValue && tableInitialValue["columnSorting"]) {
-      $('#' + id + '-handsontable-sortable').prop("checked", true)
-    }
-    $('#' + id + '-handsontable-sortable').on('click', function() {
-      var tableValue = JSON.parse($('#' + id).val());
-      if (tableValue) {
-        tableValue["columnSorting"] = $(this).is(':checked');
-        $('#' + id).val(JSON.stringify(tableValue));
-      }
-    });
+	function makeTableSortable(id) {
+		var tableInitialValue = JSON.parse($("#" + id).val());
+		if (tableInitialValue && tableInitialValue["columnSorting"]) {
+			$("#" + id + "-handsontable-sortable").prop("checked", true);
+		}
+		$("#" + id + "-handsontable-sortable").on("click", function () {
+			var tableValue = JSON.parse($("#" + id).val());
+			if (tableValue) {
+				tableValue["columnSorting"] = $(this).is(":checked");
+				$("#" + id).val(JSON.stringify(tableValue));
+			}
+		});
 
-    $('#' + id + '-handsontable-header').on('change', function() {
-      persistSortable(id);
-    });
-    $('#' + id + '-handsontable-col-header').on('change', function() {
-      persistSortable(id);
-    });
-    $('#' + id + '-handsontable-col-caption').on('change', function() {
-      persistSortable(id);
-    });
-    window.Handsontable.hooks.add('afterDeselect', function() {
-      persistSortable(id);
-    });
-  }
+		$("#" + id + "-handsontable-header").on("change", function () {
+			persistSortable(id);
+		});
+		$("#" + id + "-handsontable-col-header").on("change", function () {
+			persistSortable(id);
+		});
+		$("#" + id + "-handsontable-col-caption").on("change", function () {
+			persistSortable(id);
+		});
+		window.Handsontable.hooks.add("afterDeselect", function () {
+			persistSortable(id);
+		});
+	}
 
-  function persistSortable(id) {
-    var tableValue = JSON.parse($('#' + id).val());
-    if (tableValue) {
-      tableValue["columnSorting"] = $('#' + id + '-handsontable-sortable').is(':checked');
-      $('#' + id).val(JSON.stringify(tableValue));
-    }
-  }
+	function persistSortable(id) {
+		var tableValue = JSON.parse($("#" + id).val());
+		if (tableValue) {
+			tableValue["columnSorting"] = $("#" + id + "-handsontable-sortable").is(
+				":checked",
+			);
+			$("#" + id).val(JSON.stringify(tableValue));
+		}
+	}
 
-  window.makeTableSortable = makeTableSortable;
-  window.createTableRichTextEditor = createTableRichTextEditor;
-  window.setCustomContextMenus = setCustomContextMenus;
-  window.persistMergedCells = persistMergedCells;
+	window.makeTableSortable = makeTableSortable;
+	window.createTableRichTextEditor = createTableRichTextEditor;
+	window.setCustomContextMenus = setCustomContextMenus;
+	window.persistMergedCells = persistMergedCells;
 
+	// Create a new richtext table input widget
+	class RichTextTableInput {
+		constructor(options, strings) {
+			this.options = options;
+			this.strings = strings;
+		}
 
-  // Create a new richtext table input widget
-  class RichTextTableInput {
-    constructor(options, strings) {
-      this.options = options;
-      this.strings = strings;
-    }
-
-    render(placeholder, name, id, initialState) {
-      const container = document.createElement('div');
-      container.innerHTML = `
+		render(placeholder, name, id, initialState) {
+			const container = document.createElement("div");
+			container.innerHTML = `
         <div class="w-field__wrapper" data-field-wrapper>
           <label class="w-field__label" for="${id}-handsontable-sortable">Sortable table</label>
           <div class="w-field w-field--boolean_field w-field--checkbox_input" data-field>
@@ -30282,29 +30333,29 @@ function stateToHTML(content, options) {
           </div>
         </div>
         <div class="w-field__wrapper" data-field-wrapper>
-          <label class="w-field__label" for="${id}-table-header-choice">${this.strings['Table headers']}</label>
+          <label class="w-field__label" for="${id}-table-header-choice">${this.strings["Table headers"]}</label>
           <select id="${id}-table-header-choice" name="table-header-choice">
             <option value="">Select a header option</option>
             <option value="row">
-                ${this.strings['Display the first row as a header']}
+                ${this.strings["Display the first row as a header"]}
             </option>
             <option value="column">
-                ${this.strings['Display the first column as a header']}
+                ${this.strings["Display the first column as a header"]}
             </option>
             <option value="both">
-                ${this.strings['Display the first row AND first column as headers']}
+                ${this.strings["Display the first row AND first column as headers"]}
             </option>
             <option value="neither">
-                ${this.strings['No headers']}
+                ${this.strings["No headers"]}
             </option>
           </select>
-          <p class="help">${this.strings['Which cells should be displayed as headers?']}</p>
+          <p class="help">${this.strings["Which cells should be displayed as headers?"]}</p>
         </div>
         <div class="w-field__wrapper" data-field-wrapper>
-          <label class="w-field__label" for="${id}-handsontable-col-caption">${this.strings['Table caption']}</label>
+          <label class="w-field__label" for="${id}-handsontable-col-caption">${this.strings["Table caption"]}</label>
           <div class="w-field w-field--char_field w-field--text_input" data-field>
             <div class="w-field__help" id="${id}-handsontable-col-caption-helptext" data-field-help>
-              <div class="help">${this.strings['A heading that identifies the overall topic of the table, and is useful for screen reader users.']}</div>
+              <div class="help">${this.strings["A heading that identifies the overall topic of the table, and is useful for screen reader users."]}</div>
             </div>
             <div class="w-field__input" data-field-input>
               <input type="text" id="${id}-handsontable-col-caption" name="handsontable-col-caption" aria-describedby="${id}-handsontable-col-caption-helptext" />
@@ -30312,36 +30363,39 @@ function stateToHTML(content, options) {
           </div>
         </div>
         <div id="${id}-handsontable-container"></div>
-        <input type="hidden" name="${name}" id="${id}" placeholder="${this.strings['Table']}">
+        <input type="hidden" name="${name}" id="${id}" placeholder="${this.strings["Table"]}">
       `;
-      placeholder.replaceWith(container);
+			placeholder.replaceWith(container);
 
-      const input = container.querySelector(`input[name="${name}"]`);
-      const options = this.options;
+			const input = container.querySelector(`input[name="${name}"]`);
+			const options = this.options;
 
-      const widget = {
-        getValue() {
-          return JSON.parse(input.value);
-        },
-        getState() {
-          return JSON.parse(input.value);
-        },
-        setState(state) {
-          input.value = JSON.stringify(state);
-          setCustomContextMenus();
-          createTableRichTextEditor();
-          initTable(id, options);
-          makeTableSortable(id);
-          persistMergedCells(id);
-        },
-        focus() {},
-      };
-      widget.setState(initialState);
-      return widget;
-    }
-  }
-  window.telepath.register('wagtail.widgets.RichTextTableInput', RichTextTableInput);
-})( window );
+			const widget = {
+				getValue() {
+					return JSON.parse(input.value);
+				},
+				getState() {
+					return JSON.parse(input.value);
+				},
+				setState(state) {
+					input.value = JSON.stringify(state);
+					setCustomContextMenus();
+					createTableRichTextEditor();
+					initTable(id, options);
+					makeTableSortable(id);
+					persistMergedCells(id);
+				},
+				focus() {},
+			};
+			widget.setState(initialState);
+			return widget;
+		}
+	}
+	window.telepath.register(
+		"wagtail.widgets.RichTextTableInput",
+		RichTextTableInput,
+	);
+})(window);
 
 })();
 
