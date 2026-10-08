@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "description": "An extended wagtail table block.",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack watch --mode development --devtool eval-source-map"
+    "build": "webpack --config-node-env production",
+    "start": "webpack watch --config-node-env development --devtool eval-source-map"
   },
   "devDependencies": {
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "webpack": "^5.111.1",
-    "webpack-cli": "^7.2.3",
-    "webpack-merge": "^6.0.1"
+    "webpack-cli": "^7.2.3"
   }
 }
