@@ -1,0 +1,53 @@
+name: Check
+
+on:
+  pull_request:
+    types: ["opened", "synchronize"]
+  push:
+    branches: ["main"]
+  merge_group:
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.14"
+  NODE_VERSION: "26"
+
+jobs:
+  lint-actions:
+    name: Lint:Actions
+    permissions:
+      contents: read
+      actions: read
+    uses: freedomofpress/actionslib/.github/workflows/lint-actions.yaml@main
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      # ESLint resolves the shared config and plugins against node_modules
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run hooks
+        run: pre-commit run --all-files --show-diff-on-failure

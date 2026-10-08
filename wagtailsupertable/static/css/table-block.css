@@ -38,20 +38,18 @@
     font-size: 1.25em;
 }
 
-table[id$=sortable-input] {
+table[id$="sortable-input"] {
     width: 100%;
     margin-bottom: 10px;
     display: none;
 }
 
-table[id$=sortable-input] .sortable-type-input {
+table[id$="sortable-input"] .sortable-type-input {
     border: 1px solid #b4b5b6 !important;
     height: 1.875em;
     width: 100%;
     padding: .25em .375em;
-    -webkit-appearance: menulist !important;
-    -moz-appearance: menulist !important;
-    appearance: menulist !important;
+    appearance: auto !important;
     border-radius: 0;
     color: #101820;
 }

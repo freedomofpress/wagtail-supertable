@@ -1,45 +1,20 @@
-var webpack       = require('webpack');
-var { merge }     = require('webpack-merge');
+const path = require("path");
 
-var TARGET = process.env.npm_lifecycle_event;
+module.exports = {
+	context: __dirname,
 
-var target = __dirname + '/wagtailsupertable/static/js/';
-
-var common = {
 	entry: {
-		table_block: __dirname + '/wagtailsupertable/client/table-block.js',
+		table_block: "./wagtailsupertable/client/table-block.js",
 	},
 
 	output: {
-		path: target,
-		filename: '[name].js'
+		path: path.resolve(__dirname, "wagtailsupertable/static/js"),
+		// No content hash: blocks.py references this file by name.
+		filename: "[name].js",
 	},
 
-	resolve: {
-		extensions: ['.js'],
-		modules: ['node_modules']
-	}
+	optimization: {
+		// Keep the committed bundle readable.
+		minimize: false,
+	},
 };
-
-if (TARGET === 'build') {
-	module.exports = merge(common, {
-		plugins: [
-			new webpack.DefinePlugin({
-				'process.env': { 'NODE_ENV': JSON.stringify('production') }
-			})
-		],
-    optimization: {
-      minimize: false,
-    }
-	});
-}
-
-if (TARGET === 'start') {
-	module.exports = merge(common, {
-		devtool: 'eval-source-map',
-		devServer: {
-			contentBase: target,
-			progress: true,
-		}
-	});
-}
