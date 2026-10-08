@@ -1,6 +1,6 @@
 dialog.table-block-modal {
 	padding: 0;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid rgb(0, 0, 0, 0.2);
 	border-radius: 6px;
 	max-width: 90vw;
 	width: 720px;
@@ -8,11 +8,11 @@ dialog.table-block-modal {
 	overflow: auto;
 	background: #fff;
 	color: inherit;
-	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 5px 20px rgb(0, 0, 0, 0.3);
 }
 
 dialog.table-block-modal::backdrop {
-	background: rgba(0, 0, 0, 0.5);
+	background: rgb(0, 0, 0, 0.5);
 }
 
 .table-block-modal__close {

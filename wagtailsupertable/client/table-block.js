@@ -1,4 +1,4 @@
-/* eslint-env jquery */
+/* global $, initTable */
 import { stateToHTML } from 'draft-js-export-html';
 
 ( function( window ) {
@@ -83,7 +83,7 @@ import { stateToHTML } from 'draft-js-export-html';
   }
 
   function setCustomContextMenus(){
-    window.Handsontable.hooks.add('afterMergeCells', function(cellRange, mergeParent, auto) {
+    window.Handsontable.hooks.add('afterMergeCells', function(cellRange, mergeParent) {
       saveMergeCellInformation(this, cellRange, mergeParent);
     })
     window.Handsontable.hooks.add('beforeContextMenuSetItems', function(items) {
@@ -128,16 +128,16 @@ import { stateToHTML } from 'draft-js-export-html';
       mergeClassName = oldClassName + " " + mergeClassName;
     }
     hot.setCellMeta(mergeParent.row, mergeParent.col, 'className', mergeClassName)
-    for(var i = 1; i < mergeParent.rowspan; i++) {
+    for(let i = 1; i < mergeParent.rowspan; i++) {
       hot.setCellMeta((mergeParent.row + i), mergeParent.col, 'className', 'hidden')
     }
-    for(var i = 1; i < mergeParent.colspan; i++) {
+    for(let i = 1; i < mergeParent.colspan; i++) {
       hot.setCellMeta(mergeParent.row, mergeParent.col + i, 'className', 'hidden')
     }
     hot.render()
   }
 
-  function makeEditorRichText(key, selection, clickEvent) {
+  function makeEditorRichText(key, selection) {
     this.setCellMeta(selection[0].start.row, selection[0].start.col, 'editor', 'richtext');
     this.selectCell(selection[0].start.row, selection[0].start.col);
     this.getActiveEditor().beginEditing();
@@ -425,7 +425,6 @@ import { stateToHTML } from 'draft-js-export-html';
           makeTableSortable(id);
           persistMergedCells(id);
         },
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         focus() {},
       };
       widget.setState(initialState);
